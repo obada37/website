@@ -21,6 +21,7 @@
             --notebook-bg: #f9f9f9;
             --notebook-line: 1px solid #e0e0e0;
             --success-color: #2ecc71;
+            --disabled-color: #bdc3c7;
         }
         * {
             box-sizing: border-box;
@@ -228,7 +229,7 @@
         }
         .session {
             background-color: var(--white-color);
-            padding: 1.5rem 1.2rem 1.2rem 4rem;
+            padding: 1.5rem;
             border-radius: var(--border-radius);
             border-left: 4px solid var(--secondary-color);
             position: relative;
@@ -274,6 +275,80 @@
             margin-left: 0.5rem;
             color: var(--secondary-color);
         }
+        .session .session-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+            gap: 10px;
+        }
+        .session .timer-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
+            min-height: 36px;
+            background: #f1f1f1;
+            color: #666;
+            border-radius: 6px;
+            padding: 0 10px;
+            font-family: 'Tajawal', Arial, sans-serif;
+            font-size: 0.85em;
+            font-weight: bold;
+            box-shadow: 0 1px 4px rgba(160,160,160,0.10);
+            border: 1.2px solid #e0e0e0;
+            z-index: 10;
+            transition: background 0.2s, color 0.2s;
+            pointer-events: none;
+            user-select: none;
+        }
+        .session .timer-box.timer-active {
+            background: #e7f9ed;
+            color: #229d6a;
+            border-color: #c3f2da;
+        }
+        .session .timer-box.timer-waiting {
+            background: #f7f7f7;
+            color: #888;
+            border-color: #e0e0e0;
+        }
+        .session .timer-box.timer-finished {
+            background: #f8f8f8;
+            color: #b4b4b4;
+            border-color: #ededed;
+        }
+        .session .timer-box .timer-icon {
+            font-size: 0.9em;
+            margin-left: 4px;
+        }
+        .session .timer-box .active-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-left: 3px;
+            border-radius: 50%;
+            background-color: var(--success-color);
+            box-shadow: 0 0 6px 2px #2ecc7177;
+            border: 2px solid #fff;
+            vertical-align: middle;
+            animation: blinkActiveDot 1.2s infinite alternate;
+        }
+        @keyframes blinkActiveDot {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        .session .timer-box .timer-label {
+            font-size: 0.85em;
+            font-weight: normal;
+            margin: 0 2px;
+        }
+        .session .timer-box .timer-time {
+            font-family: monospace, 'Tajawal', Arial, sans-serif;
+            font-size: 0.95em;
+            letter-spacing: 1px;
+            direction: ltr;
+            unicode-bidi: embed;
+        }
         .video-link {
             display: inline-flex;
             align-items: center;
@@ -285,7 +360,6 @@
             text-decoration: none;
             font-size: 1rem;
             transition: var(--transition);
-            margin-top: 0.5rem;
             position: relative;
             z-index: 1;
             border: none;
@@ -293,11 +367,22 @@
             font-weight: 600;
             gap: 0.5rem;
             box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+            flex-grow: 1;
         }
         .video-link:hover {
             background-color: var(--primary-color);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        .video-link.disabled {
+            background-color: var(--disabled-color);
+            cursor: not-allowed;
+            pointer-events: none;
+            box-shadow: none;
+        }
+        .video-link.disabled:hover {
+            transform: none;
+            background-color: var(--disabled-color);
         }
         .session-type {
             position: absolute;
@@ -321,288 +406,42 @@
             background-color: var(--microbiology-color);
             color: var(--white-color);
         }
-        .pdf-section {
-            background-color: var(--white-color);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 2rem 1.5rem;
-            border-top: 4px solid var(--success-color);
-            position: relative;
-            overflow: hidden;
-        }
-        .pdf-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.4rem;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 0 1rem;
-        }
-        .pdf-section h2::before, .pdf-section h2::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(to right, var(--biology-color), var(--microbiology-color));
-        }
-        .pdf-section h2::before {
-            right: 100%;
-        }
-        .pdf-section h2::after {
-            left: 100%;
-        }
-        .pdf-section h2 i {
-            margin-left: 0.5rem;
-            color: var(--success-color);
-        }
-        .pdf-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        .pdf-card {
-            background-color: var(--white-color);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            border-left: 4px solid var(--success-color);
-            transition: var(--transition);
-            opacity: 0;
-            animation: fadeInUp 0.7s forwards;
-            box-shadow: var(--box-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-        .pdf-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(236, 240, 241,0.9) 100%);
-            z-index: -1;
-        }
-        .pdf-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .pdf-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            min-height: 3.5rem;
-            display: flex;
-            align-items: center;
-        }
-        .pdf-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--success-color);
-            color: var(--white-color);
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: var(--transition);
-            margin-top: 0.5rem;
-            position: relative;
-            z-index: 1;
-            font-weight: 600;
-            gap: 0.5rem;
-            box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);
-            width: 100%;
-            text-align: center;
-        }
-        .pdf-link:hover {
-            background-color: #25a25a;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
-        }
-        .youtube-section {
-            margin: 3rem auto;
-            padding: 2rem 1.5rem;
-            background: var(--white-color);
-            box-shadow: var(--box-shadow);
-            border-radius: var(--border-radius);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-top: 4px solid #e74c3c;
-            max-width: 600px;
-            position: relative;
-            overflow: hidden;
-        }
-        .youtube-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #e74c3c, #c0392b);
-        }
-        .youtube-section h2 {
-            color: #e74c3c;
-            margin-bottom: 1.5rem;
-            font-size: 1.4rem;
-            text-align: center;
-            position: relative;
-            display: inline-block;
-            padding: 0 1rem;
-        }
-        .youtube-section h2::before, .youtube-section h2::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 30px;
-            height: 3px;
-            background: linear-gradient(to right, #e74c3c, #c0392b);
-        }
-        .youtube-section h2::before {
-            right: 100%;
-        }
-        .youtube-section h2::after {
-            left: 100%;
-        }
-        .youtube-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: #e74c3c;
-            background: #f9f9f9;
-            border-radius: 8px;
-            padding: 1rem 1.5rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-decoration: none;
-            transition: var(--transition);
-            margin-bottom: 1.5rem;
-            border: 2px solid #f1f1f1;
-            width: 100%;
-            max-width: 400px;
-            justify-content: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-        }
-        .youtube-link:hover {
-            background: #ffecec;
-            color: #c0392b;
-            border-color: #e74c3c;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.2);
-        }
-        .youtube-link img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid #e74c3c;
-            object-fit: cover;
-        }
-        .youtube-section iframe {
-            border-radius: 10px;
-            border: none;
-            margin-top: 1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 560px;
-            height: 315px;
-        }
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            width: 3.5rem;
-            height: 3.5rem;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: var(--transition);
-            z-index: 100;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            border: none;
-            font-size: 1.5rem;
-        }
-        .scroll-top.visible {
-            opacity: 1;
-        }
-        .scroll-top:hover {
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            transform: translateY(-5px) scale(1.1);
-        }
-        footer {
-            margin-top: 4rem;
-            padding: 2rem 1rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
-            color: var(--white-color);
-            text-align: center;
-            font-weight: 500;
-            font-size: 1rem;
-            position: relative;
-        }
-        footer::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--biology-color), var(--microbiology-color), var(--accent-color));
-        }
-        footer p {
-            margin-bottom: 0.7rem;
-        }
-        footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: var(--transition);
-            font-weight: 600;
-        }
-        footer a:hover {
-            color: var(--white-color);
-            text-decoration: underline;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255,255,255,0.1);
-            color: var(--white-color);
-            transition: var(--transition);
-            font-size: 1.2rem;
-        }
-        .social-links a:hover {
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .pdf-section {background-color: var(--white-color);border-radius: var(--border-radius);box-shadow: var(--box-shadow);padding: 2rem 1.5rem;border-top: 4px solid var(--success-color);position: relative;overflow: hidden;}
+        .pdf-section h2 {color: var(--primary-color);margin-bottom: 1.5rem;text-align: center;font-size: 1.4rem;position: relative;display: inline-block;left: 50%;transform: translateX(-50%);padding: 0 1rem;}
+        .pdf-section h2::before, .pdf-section h2::after {content: "";position: absolute;top: 50%;width: 50px;height: 2px;background: linear-gradient(to right, var(--biology-color), var(--microbiology-color));}
+        .pdf-section h2::before {right: 100%;}
+        .pdf-section h2::after {left: 100%;}
+        .pdf-section h2 i {margin-left: 0.5rem;color: var(--success-color);}
+        .pdf-grid {display: grid;grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));gap: 1.5rem;}
+        .pdf-card {background-color: var(--white-color);padding: 1.5rem;border-radius: var(--border-radius);border-left: 4px solid var(--success-color);transition: var(--transition);opacity: 0;animation: fadeInUp 0.7s forwards;box-shadow: var(--box-shadow);position: relative;overflow: hidden;}
+        .pdf-card::before {content: "";position: absolute;top: 0;left: 0;right: 0;bottom: 0;background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(236, 240, 241,0.9) 100%);z-index: -1;}
+        .pdf-card:hover {transform: translateY(-5px);box-shadow: 0 10px 25px rgba(0,0,0,0.1);}
+        .pdf-card h3 {color: var(--primary-color);margin-bottom: 1rem;font-size: 1.1rem;font-weight: 700;min-height: 3.5rem;display: flex;align-items: center;}
+        .pdf-link {display: inline-flex;align-items: center;justify-content: center;background-color: var(--success-color);color: var(--white-color);padding: 0.6rem 1.2rem;border-radius: 6px;text-decoration: none;font-size: 1rem;transition: var(--transition);margin-top: 0.5rem;position: relative;z-index: 1;font-weight: 600;gap: 0.5rem;box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);width: 100%;text-align: center;}
+        .pdf-link:hover {background-color: #25a25a;transform: translateY(-2px);box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);}
+        .youtube-section {margin: 3rem auto;padding: 2rem 1.5rem;background: var(--white-color);box-shadow: var(--box-shadow);border-radius: var(--border-radius);display: flex;flex-direction: column;align-items: center;border-top: 4px solid #e74c3c;max-width: 600px;position: relative;overflow: hidden;}
+        .youtube-section::before {content: "";position: absolute;top: 0;left: 0;right: 0;height: 4px;background: linear-gradient(90deg, #e74c3c, #c0392b);}
+        .youtube-section h2 {color: #e74c3c;margin-bottom: 1.5rem;font-size: 1.4rem;text-align: center;position: relative;display: inline-block;padding: 0 1rem;}
+        .youtube-section h2::before, .youtube-section h2::after {content: "";position: absolute;top: 50%;width: 30px;height: 3px;background: linear-gradient(to right, #e74c3c, #c0392b);}
+        .youtube-section h2::before {right: 100%;}
+        .youtube-section h2::after {left: 100%;}
+        .youtube-link {display: flex;align-items: center;gap: 1rem;color: #e74c3c;background: #f9f9f9;border-radius: 8px;padding: 1rem 1.5rem;font-size: 1.1rem;font-weight: bold;text-decoration: none;transition: var(--transition);margin-bottom: 1.5rem;border: 2px solid #f1f1f1;width: 100%;max-width: 400px;justify-content: center;box-shadow: 0 3px 10px rgba(0,0,0,0.05);}
+        .youtube-link:hover {background: #ffecec;color: #c0392b;border-color: #e74c3c;transform: translateY(-3px);box-shadow: 0 5px 15px rgba(231, 76, 60, 0.2);}
+        .youtube-link img {width: 40px;height: 40px;border-radius: 50%;border: 2px solid #e74c3c;object-fit: cover;}
+        .youtube-section iframe {border-radius: 10px;border: none;margin-top: 1rem;box-shadow: 0 5px 15px rgba(0,0,0,0.1);width: 100%;max-width: 560px;height: 315px;}
+        .scroll-top {position: fixed;bottom: 2rem;left: 2rem;background-color: var(--primary-color);color: var(--white-color);width: 3.5rem;height: 3.5rem;border-radius: 50%;display: flex;justify-content: center;align-items: center;cursor: pointer;opacity: 0;transition: var(--transition);z-index: 100;box-shadow: 0 5px 20px rgba(0,0,0,0.15);border: none;font-size: 1.5rem;}
+        .scroll-top.visible {opacity: 1;}
+        .scroll-top:hover {background-color: var(--accent-color);color: var(--primary-color);transform: translateY(-5px) scale(1.1);}
+        footer {margin-top: 4rem;padding: 2rem 1rem;background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);color: var(--white-color);text-align: center;font-weight: 500;font-size: 1rem;position: relative;}
+        footer::before {content: "";position: absolute;top: 0;left: 0;right: 0;height: 5px;background: linear-gradient(90deg, var(--biology-color), var(--microbiology-color), var(--accent-color));}
+        footer p {margin-bottom: 0.7rem;}
+        footer a {color: var(--accent-color);text-decoration: none;transition: var(--transition);font-weight: 600;}
+        footer a:hover {color: var(--white-color);text-decoration: underline;}
+        .social-links {display: flex;justify-content: center;gap: 1.5rem;margin-top: 1.5rem;}
+        .social-links a {display: flex;align-items: center;justify-content: center;width: 40px;height: 40px;border-radius: 50%;background-color: rgba(255,255,255,0.1);color: var(--white-color);transition: var(--transition);font-size: 1.2rem;}
+        .social-links a:hover {background-color: var(--accent-color);color: var(--primary-color);transform: translateY(-3px);}
+        @keyframes fadeIn {from { opacity: 0; }to { opacity: 1; }}
+        @keyframes fadeInUp {from { opacity: 0; transform: translateY(20px); }to { opacity: 1; transform: translateY(0); }}
         @media (max-width: 992px) {
             .container { padding: 0 1rem; }
             .sessions-container { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
@@ -616,7 +455,7 @@
             .tab-btn { min-width: 120px; padding: 0.7rem 1rem; font-size: 1rem; }
             .day-schedule { padding: 1.5rem 1rem 1.2rem; }
             .day-schedule::before { left: 50px; }
-            .session { padding: 1.3rem 1rem 1rem 3.5rem; }
+            .session { padding: 1.3rem 1rem 1rem; }
             .scroll-top { width: 3rem; height: 3rem; bottom: 1.5rem; left: 1.5rem; font-size: 1.3rem; }
             .youtube-section { padding: 1.5rem 1rem; }
             .youtube-link { padding: 0.8rem 1rem; font-size: 1rem; }
@@ -632,6 +471,14 @@
             .sessions-container, .pdf-grid { grid-template-columns: 1fr; }
             .day-schedule h2 { font-size: 1.3rem; }
             .session .topic { font-size: 1.1rem; }
+            .session .session-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .session .timer-box {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
             .youtube-section iframe { height: 200px; }
             .scroll-top { width: 2.8rem; height: 2.8rem; bottom: 1rem; left: 1rem; }
         }
@@ -646,138 +493,200 @@
             <p>إعداد: الأستاذ أحمد الجمال</p>
         </div>
     </header>
-    
     <div class="container">
         <div class="study-banner">
             <i class="fas fa-calendar-check"></i>
             <div class="banner-text">سيتم تفعيل البثوث في وقتها انتظرونا</div>
         </div>
-        
         <div class="tabs">
             <button class="tab-btn active" data-tab="schedule">الجدول الدراسي <i class="fas fa-calendar-alt"></i></button>
             <button class="tab-btn" data-tab="files">ملفات البث <i class="fas fa-file-pdf"></i></button>
         </div>
-        
         <div class="tab-content active" id="schedule">
             <section class="day-schedule">
                 <h2><i class="fas fa-calendar-day"></i> الأحد 6/29</h2>
                 <div class="sessions-container">
-                    <div class="session" style="animation-delay: 0s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-06-29T01:30:00" data-end="2025-06-29T03:15:00" style="animation-delay: 0s; animation-name: fadeInUp;">
                         <div class="topic">أثر البيئة + الوراثة فوق جينية + مقدمة الطفرات</div>
-                        <div class="time"><i class="fas fa-clock"></i> 5:00 مساءً - 7:00 مساءً</div>
-                        <a href="https://www.youtube.com/watch?v=bNyUyrR0PHo" class="video-link" target="_blank">
-                            <i class="fas fa-play"></i> مشاهدة البث
-                        </a>
+                        <div class="time"><i class="fas fa-clock"></i> 1:30 صباحاً - 3:15 صباحاً</div>
+                        <div class="session-footer">
+                            <a href="https://www.youtube.com/watch?v=bNyUyrR0PHo" class="video-link disabled" target="_blank">
+                                <i class="fas fa-play"></i> مشاهدة البث
+                            </a>
+                            <span class="timer-box timer-waiting">
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">--:--:--</span>
+                        </span>
+                        </div>
                     </div>
-                    <div class="session" style="animation-delay: 0.1s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-06-29T20:00:00" data-end="2025-06-30T00:00:00" style="animation-delay: 0.1s; animation-name: fadeInUp;">
                         <div class="topic">الطفرات + التكنولوجيا</div>
                         <div class="time"><i class="fas fa-clock"></i> 8:00 مساءً - 12:00 منتصف الليل</div>
-                        <a href="https://youtube.com/live/الطفرات_والتكنولوجيا" class="video-link" target="_blank">
-                            <i class="fas fa-play"></i> مشاهدة البث
-                        </a>
+                        <div class="session-footer">
+                            <a href="https://youtube.com/live/الطفرات_والتكنولوجيا" class="video-link disabled" target="_blank">
+                                <i class="fas fa-play"></i> مشاهدة البث
+                            </a>
+                            <span class="timer-box timer-waiting">
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">--:--:--</span>
+                        </span>
+                        </div>
                     </div>
                 </div>
             </section>
-            
             <section class="day-schedule">
                 <h2><i class="fas fa-calendar-day"></i> الإثنين 6/30</h2>
                 <div class="sessions-container">
-                    <div class="session" style="animation-delay: 0.2s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-06-30T09:00:00" data-end="2025-06-30T12:00:00" style="animation-delay: 0.2s; animation-name: fadeInUp;">
                         <div class="topic">التنفس الخلوي والتخمر</div>
                         <div class="time"><i class="fas fa-clock"></i> 9:00 صباحاً - 12:00 ظهراً</div>
-                        <a href="https://youtube.com/live/التنفس_الخلوي" class="video-link" target="_blank">
-                            <i class="fas fa-play"></i> مشاهدة البث
-                        </a>
+                        <div class="session-footer">
+                            <a href="https://youtube.com/live/التنفس_الخلوي" class="video-link disabled" target="_blank">
+                                <i class="fas fa-play"></i> مشاهدة البث
+                            </a>
+                            <span class="timer-box timer-waiting">
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">--:--:--</span>
+                        </span>
+                        </div>
                     </div>
-                    <div class="session" style="animation-delay: 0.3s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-06-30T12:00:00" data-end="2025-06-30T14:00:00" style="animation-delay: 0.3s; animation-name: fadeInUp;">
                         <div class="topic">دراسة</div>
                         <div class="time"><i class="fas fa-clock"></i> 12:00 ظهراً - 2:00 ظهراً</div>
+                        
                     </div>
-                    <div class="session" style="animation-delay: 0.4s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-06-30T14:00:00" data-end="2025-06-30T16:00:00" style="animation-delay: 0.4s; animation-name: fadeInUp;">
                         <div class="topic">البناء الضوئي</div>
                         <div class="time"><i class="fas fa-clock"></i> 2:00 ظهراً - 4:00 عصراً</div>
-                        <a href="https://youtube.com/live/البناء_الضوئي" class="video-link" target="_blank">
-                            <i class="fas fa-play"></i> مشاهدة البث
-                        </a>
+                        <div class="session-footer">
+                            <a href="https://youtube.com/live/البناء_الضوئي" class="video-link disabled" target="_blank">
+                                <i class="fas fa-play"></i> مشاهدة البث
+                            </a>
+                            <span class="timer-box timer-waiting">
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">--:--:--</span>
+                        </span>
+                        </div>
                     </div>
-                    <div class="session" style="animation-delay: 0.5s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-06-30T16:00:00" data-end="2025-06-30T18:00:00" style="animation-delay: 0.5s; animation-name: fadeInUp;">
                         <div class="topic">دراسة</div>
                         <div class="time"><i class="fas fa-clock"></i> 4:00 عصراً - 6:00 مساءً</div>
+                        
                     </div>
-                    <div class="session" style="animation-delay: 0.6s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-06-30T18:00:00" data-end="2025-06-30T20:00:00" style="animation-delay: 0.6s; animation-name: fadeInUp;">
                         <div class="topic">تضاعف DNA وتصنيع بروتين</div>
                         <div class="time"><i class="fas fa-clock"></i> 6:00 مساءً - 8:00 مساءً</div>
-                        <a href="https://youtube.com/live/تضاعف_DNA" class="video-link" target="_blank">
-                            <i class="fas fa-play"></i> مشاهدة البث
-                        </a>
+                        <div class="session-footer">
+                            <a href="https://youtube.com/live/تضاعف_DNA" class="video-link disabled" target="_blank">
+                                <i class="fas fa-play"></i> مشاهدة البث
+                            </a>
+                            <span class="timer-box timer-waiting">
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">--:--:--</span>
+                        </span>
+                        </div>
                     </div>
                 </div>
             </section>
-            
             <section class="day-schedule">
                 <h2><i class="fas fa-calendar-day"></i> الثلاثاء 7/1</h2>
                 <div class="sessions-container">
-                    <div class="session" style="animation-delay: 0.7s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-07-01T07:00:00" data-end="2025-07-01T09:00:00" style="animation-delay: 0.7s; animation-name: fadeInUp;">
                         <div class="topic">دراسة</div>
                         <div class="time"><i class="fas fa-clock"></i> 7:00 صباحاً - 9:00 صباحاً</div>
+                        
                     </div>
-                    <div class="session" style="animation-delay: 0.8s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-07-01T09:00:00" data-end="2025-07-01T11:00:00" style="animation-delay: 0.8s; animation-name: fadeInUp;">
                         <div class="topic">الجينات المرتبطة + خريطة الجينات</div>
                         <div class="time"><i class="fas fa-clock"></i> 9:00 صباحاً - 11:00 صباحاً</div>
-                        <a href="https://youtube.com/live/الجينات_المرتبطة" class="video-link" target="_blank">
-                            <i class="fas fa-play"></i> مشاهدة البث
-                        </a>
+                        <div class="session-footer">
+                            <a href="https://youtube.com/live/الجينات_المرتبطة" class="video-link disabled" target="_blank">
+                                <i class="fas fa-play"></i> مشاهدة البث
+                            </a>
+                            <span class="timer-box timer-waiting">
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">--:--:--</span>
+                        </span>
+                        </div>
                     </div>
-                    <div class="session" style="animation-delay: 0.9s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-07-01T11:00:00" data-end="2025-07-01T17:00:00" style="animation-delay: 0.9s; animation-name: fadeInUp;">
                         <div class="topic">دراسة</div>
                         <div class="time"><i class="fas fa-clock"></i> 11:00 صباحاً - 5:00 مساءً</div>
+                        
                     </div>
-                    <div class="session" style="animation-delay: 1s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-07-01T17:00:00" data-end="2025-07-01T22:00:00" style="animation-delay: 1s; animation-name: fadeInUp;">
                         <div class="topic">الوراثة المندلية + الوراثة ما بعد مندل</div>
                         <div class="time"><i class="fas fa-clock"></i> 5:00 مساءً - 10:00 مساءً</div>
-                        <a href="https://youtube.com/live/الوراثة_المندلية" class="video-link" target="_blank">
-                            <i class="fas fa-play"></i> مشاهدة البث
-                        </a>
+                        <div class="session-footer">
+                            <a href="https://youtube.com/live/الوراثة_المندلية" class="video-link disabled" target="_blank">
+                                <i class="fas fa-play"></i> مشاهدة البث
+                            </a>
+                            <span class="timer-box timer-waiting">
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">--:--:--</span>
+                        </span>
+                        </div>
                     </div>
                 </div>
             </section>
-            
             <section class="day-schedule">
                 <h2><i class="fas fa-calendar-day"></i> الأربعاء 7/2</h2>
                 <div class="sessions-container">
-                    <div class="session" style="animation-delay: 1.1s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-07-02T07:00:00" data-end="2025-07-02T11:00:00" style="animation-delay: 1.1s; animation-name: fadeInUp;">
                         <div class="topic">المركبات العضوية الحيوية + الإنزيمات و ATP
-
 </div>
-                        <div class="time"><i class="fas fa-clock"></i>7:00 صباحا -11 صباحا </div>
-                        <a href="https://youtube.com/live/دورة_الخلية" class="video-link" target="_blank">
-                            <i class="fas fa-play"></i> مشاهدة البث
-                        </a>
+                        <div class="time"><i class="fas fa-clock"></i>7:00 صباحا -11 صباحا</div>
+                        <div class="session-footer">
+                            <a href="https://youtube.com/live/دورة_الخلية" class="video-link disabled" target="_blank">
+                                <i class="fas fa-play"></i> مشاهدة البث
+                            </a>
+                            <span class="timer-box timer-waiting">
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">--:--:--</span>
+                        </span>
+                        </div>
                     </div>
-                    <div class="session" style="animation-delay: 1.2s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-07-02T13:00:00" data-end="2025-07-02T15:00:00" style="animation-delay: 1.2s; animation-name: fadeInUp;">
                         <div class="topic">دورة الخلية + الانقسامات الخلوية</div>
                         <div class="time"><i class="fas fa-clock"></i> 1:00 مساء - 3:00 مساء</div>
-                        <a href="https://youtube.com/live/المركبات_العضوية" class="video-link" target="_blank">
-                            <i class="fas fa-play"></i> مشاهدة البث
-                        </a>
+                        <div class="session-footer">
+                            <a href="https://youtube.com/live/المركبات_العضوية" class="video-link disabled" target="_blank">
+                                <i class="fas fa-play"></i> مشاهدة البث
+                            </a>
+                            <span class="timer-box timer-waiting">
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">--:--:--</span>
+                        </span>
+                        </div>
                     </div>
-                    <div class="session" style="animation-delay: 1.3s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-07-02T17:00:00" data-end="2025-07-02T20:00:00" style="animation-delay: 1.3s; animation-name: fadeInUp;">
                         <div class="topic">وحدة البيئة</div>
                         <div class="time"><i class="fas fa-clock"></i> 5:00 مساءً - 8:00 مساءً</div>
-                        <a href="https://youtube.com/live/وحدة_البيئة" class="video-link" target="_blank">
-                            <i class="fas fa-play"></i> مشاهدة البث
-                        </a>
+                        <div class="session-footer">
+                            <a href="https://youtube.com/live/وحدة_البيئة" class="video-link disabled" target="_blank">
+                                <i class="fas fa-play"></i> مشاهدة البث
+                            </a>
+                            <span class="timer-box timer-waiting">
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">--:--:--</span>
+                        </span>
+                        </div>
                     </div>
-                    <div class="session" style="animation-delay: 1.4s; animation-name: fadeInUp;">
+                    <div class="session" data-start="2025-07-02T20:00:00" data-end="2025-07-02T22:00:00" style="animation-delay: 1.4s; animation-name: fadeInUp;">
                         <div class="topic">حل وزارة + الفية + كتاب الأنشطة من اليوتيوب</div>
-                        <div class="time"><i class="fas fa-clock"></i> 8:00 مساءً</div>
-                        <a href="https://youtube.com/live/حل_الوزارة" class="video-link" target="_blank">
-                            <i class="fas fa-play"></i> مشاهدة البث
-                        </a>
+                        <div class="time"><i class="fas fa-clock"></i> 8:00 مساءً - 10:00 مساءً</div>
+                        <div class="session-footer">
+                            <a href="https://youtube.com/live/حل_الوزارة" class="video-link disabled" target="_blank">
+                                <i class="fas fa-play"></i> مشاهدة البث
+                            </a>
+                            <span class="timer-box timer-waiting">
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">--:--:--</span>
+                        </span>
+                        </div>
                     </div>
                 </div>
             </section>
-            
             <section class="youtube-section">
                 <h2><i class="fab fa-youtube"></i> قناة الأستاذ أحمد الجمال على اليوتيوب</h2>
                 <a href="https://www.youtube.com/@ahmadaljammal" class="youtube-link" target="_blank">
@@ -787,7 +696,6 @@
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/q3IfIBoraCQ?start=2" allowfullscreen="" title="أحدث فيديوهات قناة الأستاذ أحمد الجمال"></iframe>
             </section>
         </div>
-        
         <div class="tab-content" id="files">
             <section class="pdf-section">
                 <h2><i class="fas fa-book-open"></i> ملفات البث</h2>
@@ -804,7 +712,7 @@
                             <i class="fas fa-download"></i> تحميل الملف
                         </a>
                     </div>
-                    <div class="pdf-card" style="animation-delay: 0.4s; animation-name: fadeInUp;">
+                    <div class="pdf-card" style="animation-delay: 0.4s; animation-name: fadeInUp; border-left-color: var(--primary-color);">
                         <h3>امتحان علمي ومهني شامل مقترح 2007</h3>
                         <a href="https://drive.google.com/uc?export=download&amp;id=1_fpOHL_LPL4hzRODZhHC6KVD5wCRYAgX" class="pdf-link" target="_blank">
                             <i class="fas fa-download"></i> تحميل الملف
@@ -838,7 +746,6 @@
             </section>
         </div>
     </div>
-    
     <footer>
         <p>جميع الحقوق محفوظة © <span id="year">2025</span> - قناة الأستاذ أحمد الجمال</p>
         <p>تابعنا على: <a href="https://www.youtube.com/@ahmadaljammal" target="_blank">اليوتيوب</a></p>
@@ -849,12 +756,17 @@
             <a href="#" aria-label="تلغرام"><i class="fab fa-telegram"></i></a>
         </div>
     </footer>
-    
     <button class="scroll-top" id="scrollTop" aria-label="الانتقال إلى الأعلى">
         <i class="fas fa-arrow-up"></i>
     </button>
-    
     <script>
+        // طلب الإذن للإشعارات عند الدخول
+        if ('Notification' in window) {
+            if (Notification.permission === "default") {
+                Notification.requestPermission();
+            }
+        }
+
         // تحديث سنة حقوق النشر
         document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -942,6 +854,91 @@
                 }
             });
         });
+
+        // ----------- تايمر العد التنازلي مع زر المشاهدة + الإشعار عند بدء البث -----------------
+        let notifiedSessions = JSON.parse(localStorage.getItem('notifiedSessions') || '[]');
+
+        function pad2(n) {
+            return n < 10 ? "0" + n : n;
+        }
+        
+        function updateTimers() {
+            const now = new Date();
+            document.querySelectorAll('.session').forEach(session => {
+                const timerBox = session.querySelector('.timer-box');
+                const videoLink = session.querySelector('.video-link');
+                if (!timerBox) return;
+                
+                const startStr = session.getAttribute('data-start');
+                const endStr = session.getAttribute('data-end');
+                if (!startStr || !endStr) return;
+                
+                const start = new Date(startStr);
+                const end = new Date(endStr);
+
+                // تنظيف
+                timerBox.innerHTML = '';
+                timerBox.classList.remove('timer-active', 'timer-waiting', 'timer-finished');
+                
+                if (videoLink) {
+                    videoLink.classList.remove('disabled');
+                }
+
+                if (now < start) {
+                    // لم يبدأ بعد
+                    const diff = start - now;
+                    if (diff > 0) {
+                        const h = Math.floor(diff / (1000 * 60 * 60));
+                        const m = Math.floor((diff / (1000 * 60)) % 60);
+                        const s = Math.floor((diff / 1000) % 60);
+                        timerBox.classList.add('timer-waiting');
+                        timerBox.innerHTML = `
+                            <span class="timer-icon"><i class="fa-regular fa-hourglass-half"></i></span>
+                            <span class="timer-time">${pad2(h)}:${pad2(m)}:${pad2(s)}</span>
+                        `;
+                        
+                        // تعطيل زر المشاهدة إذا لم يتبقى 5 دقائق أو أقل
+                        if (diff > 5 * 60 * 1000 && videoLink) {
+                            videoLink.classList.add('disabled');
+                        }
+                    }
+                } else if (now >= start && now <= end) {
+                    // نشط الآن
+                    const diff = end - now;
+                    const h = Math.floor(diff / (1000 * 60 * 60));
+                    const m = Math.floor((diff / (1000 * 60)) % 60);
+                    const s = Math.floor((diff / 1000) % 60);
+                    timerBox.classList.add('timer-active');
+                    timerBox.innerHTML = `
+                        <span class="active-dot"></span>
+                        <span class="timer-icon"><i class="fa-solid fa-bolt"></i></span>
+                        <span class="timer-time">${pad2(h)}:${pad2(m)}:${pad2(s)}</span>
+                    `;
+
+                    // إشعار عند بداية البث
+                    const sessionId = session.getAttribute('data-start') + session.querySelector('.topic').textContent;
+                    if ('Notification' in window && Notification.permission === "granted" && !notifiedSessions.includes(sessionId)) {
+                        new Notification("🚨 بدأ البث الآن!", {
+                            body: "بدأ البث: " + session.querySelector('.topic').textContent,
+                            icon: "https://yt3.googleusercontent.com/hs6-dmB5gUUeT1H9MjeNWQwI_gUr6CYbEV6VWXiFHdSuuedhauNTMr9ZMsNlTUfmHtws8iQi=s160-c-k-c0x00ffffff-no-rj",
+                            dir: "rtl"
+                        });
+                        notifiedSessions.push(sessionId);
+                        localStorage.setItem('notifiedSessions', JSON.stringify(notifiedSessions));
+                    }
+
+                } else {
+                    // انتهت الجلسة
+                    timerBox.classList.add('timer-finished');
+                    timerBox.innerHTML = `
+                        <span class="timer-icon"><i class="fa-regular fa-circle-check"></i></span>
+                    `;
+                }
+            });
+        }
+        
+        setInterval(updateTimers, 1000);
+        document.addEventListener('DOMContentLoaded', updateTimers);
     </script>
 
 </body></html>
