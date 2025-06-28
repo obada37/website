@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
+<html lang="ar" dir="rtl"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خطة دراسة الأحياء قبل الامتحان - الأستاذ أحمد الجمال</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -24,21 +22,18 @@
             --notebook-line: 1px solid #e0e0e0;
             --success-color: #2ecc71;
         }
-        
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Tajawal', Arial, sans-serif;
         }
-        
         body {
             min-height: 100vh;
             background-color: var(--notebook-bg);
             color: var(--dark-color);
             line-height: 1.6;
         }
-        
         header {
             text-align: center;
             padding: 2.5rem 1rem 2rem;
@@ -48,7 +43,6 @@
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        
         .header-decor {
             position: absolute;
             bottom: 0;
@@ -58,12 +52,10 @@
             background: linear-gradient(90deg, var(--biology-color), var(--microbiology-color), var(--accent-color));
             z-index: 1;
         }
-        
         .header-content {
             position: relative;
             z-index: 2;
         }
-        
         .teacher-image {
             width: 100px;
             height: 100px;
@@ -74,12 +66,10 @@
             transition: var(--transition);
             margin-bottom: 1rem;
         }
-        
         .teacher-image:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
-        
         header h1 {
             margin-bottom: 0.6rem;
             font-size: 2.2rem;
@@ -87,19 +77,16 @@
             letter-spacing: 0.5px;
             color: var(--white-color);
         }
-        
         header p {
             font-size: 1.1rem;
             opacity: 0.9;
             color: var(--light-color);
         }
-        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
-        
         .study-banner {
             margin: 2rem auto;
             text-align: center;
@@ -117,7 +104,6 @@
             position: relative;
             overflow: hidden;
         }
-        
         .study-banner::before {
             content: "";
             position: absolute;
@@ -130,17 +116,14 @@
             z-index: 0;
             opacity: 0.3;
         }
-        
         .study-banner i {
             font-size: 2rem;
             color: var(--secondary-color);
         }
-        
         .banner-text {
             position: relative;
             z-index: 1;
         }
-        
         .tabs {
             display: flex;
             flex-wrap: wrap;
@@ -149,7 +132,6 @@
             margin-bottom: 2.5rem;
             position: relative;
         }
-        
         .tabs::after {
             content: "";
             position: absolute;
@@ -160,7 +142,6 @@
             background-color: var(--light-color);
             z-index: 0;
         }
-        
         .tab-btn {
             min-width: 160px;
             background: var(--white-color);
@@ -178,24 +159,19 @@
             border: 1px solid var(--light-color);
             border-bottom: none;
         }
-        
         .tab-btn.active, .tab-btn:hover {
             background: var(--primary-color);
             color: var(--white-color);
             box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
         }
-        
         .tab-content {
             display: none;
             animation: fadeIn 0.5s;
             margin-bottom: 2.5rem;
         }
-        
         .tab-content.active {
             display: block;
         }
-        
-        /* جدول الأيام */
         .day-schedule {
             background: var(--white-color);
             border-radius: var(--border-radius);
@@ -207,7 +183,6 @@
             overflow: hidden;
             border-top: 4px solid var(--secondary-color);
         }
-        
         .day-schedule::before {
             content: "";
             position: absolute;
@@ -218,12 +193,10 @@
             background: repeating-linear-gradient(to bottom, transparent, transparent 28px, var(--accent-color) 28px, var(--accent-color) 30px);
             z-index: 0;
         }
-        
         .day-schedule:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         }
-        
         .day-schedule h2 {
             color: var(--primary-color);
             margin-bottom: 1.5rem;
@@ -235,7 +208,6 @@
             justify-content: space-between;
             position: relative;
         }
-        
         .day-schedule h2::before {
             content: "";
             position: absolute;
@@ -245,18 +217,15 @@
             height: 2px;
             background: linear-gradient(to right, var(--biology-color), var(--microbiology-color));
         }
-        
         .day-schedule h2 i {
             margin-left: 0.5rem;
             color: var(--secondary-color);
         }
-        
         .sessions-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1.5rem;
         }
-        
         .session {
             background-color: var(--white-color);
             padding: 1.5rem 1.2rem 1.2rem 4rem;
@@ -270,7 +239,6 @@
             box-shadow: 0 3px 10px rgba(0,0,0,0.05);
             z-index: 1;
         }
-        
         .session::before {
             content: "";
             position: absolute;
@@ -281,12 +249,10 @@
             background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(236, 240, 241,0.9) 100%);
             z-index: -1;
         }
-        
         .session:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
-        
         .session .topic {
             font-weight: 700;
             margin-bottom: 0.8rem;
@@ -295,7 +261,6 @@
             position: relative;
             z-index: 1;
         }
-        
         .session .time {
             color: var(--gray-color);
             font-size: 0.95rem;
@@ -305,12 +270,10 @@
             position: relative;
             z-index: 1;
         }
-        
         .session .time i {
             margin-left: 0.5rem;
             color: var(--secondary-color);
         }
-        
         .video-link {
             display: inline-flex;
             align-items: center;
@@ -331,13 +294,11 @@
             gap: 0.5rem;
             box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
         }
-        
         .video-link:hover {
             background-color: var(--primary-color);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
         }
-        
         .session-type {
             position: absolute;
             top: 1rem;
@@ -352,18 +313,14 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             text-transform: uppercase;
         }
-        
         .biology-badge {
             background-color: var(--biology-color);
             color: var(--white-color);
         }
-        
         .microbiology-badge {
             background-color: var(--microbiology-color);
             color: var(--white-color);
         }
-        
-        /* ملفات البث */
         .pdf-section {
             background-color: var(--white-color);
             border-radius: var(--border-radius);
@@ -373,7 +330,6 @@
             position: relative;
             overflow: hidden;
         }
-        
         .pdf-section h2 {
             color: var(--primary-color);
             margin-bottom: 1.5rem;
@@ -385,7 +341,6 @@
             transform: translateX(-50%);
             padding: 0 1rem;
         }
-        
         .pdf-section h2::before, .pdf-section h2::after {
             content: "";
             position: absolute;
@@ -394,26 +349,21 @@
             height: 2px;
             background: linear-gradient(to right, var(--biology-color), var(--microbiology-color));
         }
-        
         .pdf-section h2::before {
             right: 100%;
         }
-        
         .pdf-section h2::after {
             left: 100%;
         }
-        
         .pdf-section h2 i {
             margin-left: 0.5rem;
             color: var(--success-color);
         }
-        
         .pdf-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
         }
-        
         .pdf-card {
             background-color: var(--white-color);
             padding: 1.5rem;
@@ -426,7 +376,6 @@
             position: relative;
             overflow: hidden;
         }
-        
         .pdf-card::before {
             content: "";
             position: absolute;
@@ -437,12 +386,10 @@
             background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(236, 240, 241,0.9) 100%);
             z-index: -1;
         }
-        
         .pdf-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
-        
         .pdf-card h3 {
             color: var(--primary-color);
             margin-bottom: 1rem;
@@ -452,7 +399,6 @@
             display: flex;
             align-items: center;
         }
-        
         .pdf-link {
             display: inline-flex;
             align-items: center;
@@ -473,14 +419,11 @@
             width: 100%;
             text-align: center;
         }
-        
         .pdf-link:hover {
             background-color: #25a25a;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
         }
-        
-        /* قناة اليوتيوب */
         .youtube-section {
             margin: 3rem auto;
             padding: 2rem 1.5rem;
@@ -495,7 +438,6 @@
             position: relative;
             overflow: hidden;
         }
-        
         .youtube-section::before {
             content: "";
             position: absolute;
@@ -505,7 +447,6 @@
             height: 4px;
             background: linear-gradient(90deg, #e74c3c, #c0392b);
         }
-        
         .youtube-section h2 {
             color: #e74c3c;
             margin-bottom: 1.5rem;
@@ -515,7 +456,6 @@
             display: inline-block;
             padding: 0 1rem;
         }
-        
         .youtube-section h2::before, .youtube-section h2::after {
             content: "";
             position: absolute;
@@ -524,15 +464,12 @@
             height: 3px;
             background: linear-gradient(to right, #e74c3c, #c0392b);
         }
-        
         .youtube-section h2::before {
             right: 100%;
         }
-        
         .youtube-section h2::after {
             left: 100%;
         }
-        
         .youtube-link {
             display: flex;
             align-items: center;
@@ -552,7 +489,6 @@
             justify-content: center;
             box-shadow: 0 3px 10px rgba(0,0,0,0.05);
         }
-        
         .youtube-link:hover {
             background: #ffecec;
             color: #c0392b;
@@ -560,7 +496,6 @@
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(231, 76, 60, 0.2);
         }
-        
         .youtube-link img {
             width: 40px;
             height: 40px;
@@ -568,7 +503,6 @@
             border: 2px solid #e74c3c;
             object-fit: cover;
         }
-        
         .youtube-section iframe {
             border-radius: 10px;
             border: none;
@@ -578,8 +512,6 @@
             max-width: 560px;
             height: 315px;
         }
-        
-        /* زر الانتقال للأعلى */
         .scroll-top {
             position: fixed;
             bottom: 2rem;
@@ -600,17 +532,14 @@
             border: none;
             font-size: 1.5rem;
         }
-        
         .scroll-top.visible {
             opacity: 1;
         }
-        
         .scroll-top:hover {
             background-color: var(--accent-color);
             color: var(--primary-color);
             transform: translateY(-5px) scale(1.1);
         }
-        
         footer {
             margin-top: 4rem;
             padding: 2rem 1rem;
@@ -621,7 +550,6 @@
             font-size: 1rem;
             position: relative;
         }
-        
         footer::before {
             content: "";
             position: absolute;
@@ -631,30 +559,25 @@
             height: 5px;
             background: linear-gradient(90deg, var(--biology-color), var(--microbiology-color), var(--accent-color));
         }
-        
         footer p {
             margin-bottom: 0.7rem;
         }
-        
         footer a {
             color: var(--accent-color);
             text-decoration: none;
             transition: var(--transition);
             font-weight: 600;
         }
-        
         footer a:hover {
             color: var(--white-color);
             text-decoration: underline;
         }
-        
         .social-links {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
-        
         .social-links a {
             display: flex;
             align-items: center;
@@ -667,149 +590,50 @@
             transition: var(--transition);
             font-size: 1.2rem;
         }
-        
         .social-links a:hover {
             background-color: var(--accent-color);
             color: var(--primary-color);
             transform: translateY(-3px);
         }
-        
-        /* تأثيرات الظهور */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        /* استجابة الجوال */
         @media (max-width: 992px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .sessions-container {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
-            
-            .pdf-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            }
+            .container { padding: 0 1rem; }
+            .sessions-container { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+            .pdf-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
         }
-        
         @media (max-width: 768px) {
-            header {
-                padding: 2rem 1rem 1.5rem;
-            }
-            
-            header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .teacher-image {
-                width: 80px;
-                height: 80px;
-            }
-            
-            .study-banner {
-                flex-direction: column;
-                padding: 1.2rem;
-                font-size: 1.1rem;
-            }
-            
-            .tab-btn {
-                min-width: 120px;
-                padding: 0.7rem 1rem;
-                font-size: 1rem;
-            }
-            
-            .day-schedule {
-                padding: 1.5rem 1rem 1.2rem;
-            }
-            
-            .day-schedule::before {
-                left: 50px;
-            }
-            
-            .session {
-                padding: 1.3rem 1rem 1rem 3.5rem;
-            }
-            
-            .scroll-top {
-                width: 3rem;
-                height: 3rem;
-                bottom: 1.5rem;
-                left: 1.5rem;
-                font-size: 1.3rem;
-            }
-            
-            .youtube-section {
-                padding: 1.5rem 1rem;
-            }
-            
-            .youtube-link {
-                padding: 0.8rem 1rem;
-                font-size: 1rem;
-            }
-            
-            .youtube-section iframe {
-                height: 250px;
-            }
+            header { padding: 2rem 1rem 1.5rem; }
+            header h1 { font-size: 1.8rem; }
+            .teacher-image { width: 80px; height: 80px; }
+            .study-banner { flex-direction: column; padding: 1.2rem; font-size: 1.1rem; }
+            .tab-btn { min-width: 120px; padding: 0.7rem 1rem; font-size: 1rem; }
+            .day-schedule { padding: 1.5rem 1rem 1.2rem; }
+            .day-schedule::before { left: 50px; }
+            .session { padding: 1.3rem 1rem 1rem 3.5rem; }
+            .scroll-top { width: 3rem; height: 3rem; bottom: 1.5rem; left: 1.5rem; font-size: 1.3rem; }
+            .youtube-section { padding: 1.5rem 1rem; }
+            .youtube-link { padding: 0.8rem 1rem; font-size: 1rem; }
+            .youtube-section iframe { height: 250px; }
         }
-        
         @media (max-width: 576px) {
-            .container {
-                padding: 0 0.8rem;
-            }
-            
-            header h1 {
-                font-size: 1.6rem;
-            }
-            
-            header p {
-                font-size: 1rem;
-            }
-            
-            .study-banner {
-                font-size: 1rem;
-            }
-            
-            .tabs {
-                gap: 0.5rem;
-            }
-            
-            .tab-btn {
-                min-width: auto;
-                flex: 1;
-                padding: 0.7rem 0.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .sessions-container, .pdf-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .day-schedule h2 {
-                font-size: 1.3rem;
-            }
-            
-            .session .topic {
-                font-size: 1.1rem;
-            }
-            
-            .youtube-section iframe {
-                height: 200px;
-            }
-            
-            .scroll-top {
-                width: 2.8rem;
-                height: 2.8rem;
-                bottom: 1rem;
-                left: 1rem;
-            }
+            .container { padding: 0 0.8rem; }
+            header h1 { font-size: 1.6rem; }
+            header p { font-size: 1rem; }
+            .study-banner { font-size: 1rem; }
+            .tabs { gap: 0.5rem; }
+            .tab-btn { min-width: auto; flex: 1; padding: 0.7rem 0.5rem; font-size: 0.9rem; }
+            .sessions-container, .pdf-grid { grid-template-columns: 1fr; }
+            .day-schedule h2 { font-size: 1.3rem; }
+            .session .topic { font-size: 1.1rem; }
+            .youtube-section iframe { height: 200px; }
+            .scroll-top { width: 2.8rem; height: 2.8rem; bottom: 1rem; left: 1rem; }
         }
     </style>
 </head>
@@ -838,18 +662,16 @@
             <section class="day-schedule">
                 <h2><i class="fas fa-calendar-day"></i> الأحد 6/29</h2>
                 <div class="sessions-container">
-                    <div class="session">
-                        
+                    <div class="session" style="animation-delay: 0s; animation-name: fadeInUp;">
                         <div class="topic">أثر البيئة + الوراثة فوق جينية + مقدمة الطفرات</div>
-                        <div class="time"><i class="fas fa-clock"></i> 7:00 - 5:00</div>
+                        <div class="time"><i class="fas fa-clock"></i> 5:00 مساءً - 7:00 مساءً</div>
                         <a href="https://youtube.com/live/أثر_البيئة_والوراثة" class="video-link" target="_blank">
                             <i class="fas fa-play"></i> مشاهدة البث
                         </a>
                     </div>
-                    <div class="session">
-                        
+                    <div class="session" style="animation-delay: 0.1s; animation-name: fadeInUp;">
                         <div class="topic">الطفرات + التكنولوجيا</div>
-                        <div class="time"><i class="fas fa-clock"></i> 12:00 - 8:00</div>
+                        <div class="time"><i class="fas fa-clock"></i> 8:00 مساءً - 12:00 منتصف الليل</div>
                         <a href="https://youtube.com/live/الطفرات_والتكنولوجيا" class="video-link" target="_blank">
                             <i class="fas fa-play"></i> مشاهدة البث
                         </a>
@@ -860,26 +682,31 @@
             <section class="day-schedule">
                 <h2><i class="fas fa-calendar-day"></i> الإثنين 6/30</h2>
                 <div class="sessions-container">
-                    <div class="session">
-                        
-                        <div class="topic">التنفس الخلوي والتخمّر</div>
-                        <div class="time"><i class="fas fa-clock"></i> 2:00 - 12:00</div>
+                    <div class="session" style="animation-delay: 0.2s; animation-name: fadeInUp;">
+                        <div class="topic">التنفس الخلوي والتخمر</div>
+                        <div class="time"><i class="fas fa-clock"></i> 9:00 صباحاً - 12:00 ظهراً</div>
                         <a href="https://youtube.com/live/التنفس_الخلوي" class="video-link" target="_blank">
                             <i class="fas fa-play"></i> مشاهدة البث
                         </a>
                     </div>
-                    <div class="session">
-                        
+                    <div class="session" style="animation-delay: 0.3s; animation-name: fadeInUp;">
+                        <div class="topic">دراسة</div>
+                        <div class="time"><i class="fas fa-clock"></i> 12:00 ظهراً - 2:00 ظهراً</div>
+                    </div>
+                    <div class="session" style="animation-delay: 0.4s; animation-name: fadeInUp;">
                         <div class="topic">البناء الضوئي</div>
-                        <div class="time"><i class="fas fa-clock"></i> 4:00 - 2:00</div>
+                        <div class="time"><i class="fas fa-clock"></i> 2:00 ظهراً - 4:00 عصراً</div>
                         <a href="https://youtube.com/live/البناء_الضوئي" class="video-link" target="_blank">
                             <i class="fas fa-play"></i> مشاهدة البث
                         </a>
                     </div>
-                    <div class="session">
-                       
+                    <div class="session" style="animation-delay: 0.5s; animation-name: fadeInUp;">
+                        <div class="topic">دراسة</div>
+                        <div class="time"><i class="fas fa-clock"></i> 4:00 عصراً - 6:00 مساءً</div>
+                    </div>
+                    <div class="session" style="animation-delay: 0.6s; animation-name: fadeInUp;">
                         <div class="topic">تضاعف DNA وتصنيع بروتين</div>
-                        <div class="time"><i class="fas fa-clock"></i> 8:00 - 6:00</div>
+                        <div class="time"><i class="fas fa-clock"></i> 6:00 مساءً - 8:00 مساءً</div>
                         <a href="https://youtube.com/live/تضاعف_DNA" class="video-link" target="_blank">
                             <i class="fas fa-play"></i> مشاهدة البث
                         </a>
@@ -890,18 +717,24 @@
             <section class="day-schedule">
                 <h2><i class="fas fa-calendar-day"></i> الثلاثاء 7/1</h2>
                 <div class="sessions-container">
-                    <div class="session">
-                        
+                    <div class="session" style="animation-delay: 0.7s; animation-name: fadeInUp;">
+                        <div class="topic">دراسة</div>
+                        <div class="time"><i class="fas fa-clock"></i> 5:00 صباحاً - 9:00 صباحاً</div>
+                    </div>
+                    <div class="session" style="animation-delay: 0.8s; animation-name: fadeInUp;">
                         <div class="topic">الجينات المرتبطة + خريطة الجينات</div>
-                        <div class="time"><i class="fas fa-clock"></i> 10:00 - 5:00</div>
+                        <div class="time"><i class="fas fa-clock"></i> 9:00 صباحاً - 11:00 صباحاً</div>
                         <a href="https://youtube.com/live/الجينات_المرتبطة" class="video-link" target="_blank">
                             <i class="fas fa-play"></i> مشاهدة البث
                         </a>
                     </div>
-                    <div class="session">
-                        
+                    <div class="session" style="animation-delay: 0.9s; animation-name: fadeInUp;">
+                        <div class="topic">دراسة</div>
+                        <div class="time"><i class="fas fa-clock"></i> 11:00 صباحاً - 5:00 مساءً</div>
+                    </div>
+                    <div class="session" style="animation-delay: 1s; animation-name: fadeInUp;">
                         <div class="topic">الوراثة المندلية + الوراثة ما بعد مندل</div>
-                        <div class="time"><i class="fas fa-clock"></i> 8:00 - 6:00</div>
+                        <div class="time"><i class="fas fa-clock"></i> 5:00 مساءً - 10:00 مساءً</div>
                         <a href="https://youtube.com/live/الوراثة_المندلية" class="video-link" target="_blank">
                             <i class="fas fa-play"></i> مشاهدة البث
                         </a>
@@ -912,34 +745,32 @@
             <section class="day-schedule">
                 <h2><i class="fas fa-calendar-day"></i> الأربعاء 7/2</h2>
                 <div class="sessions-container">
-                    <div class="session">
-                       
-                        <div class="topic">دورة الخلية + الانقسامات الخلوية</div>
-                        <div class="time"><i class="fas fa-clock"></i> 3:00 - 1:00</div>
+                    <div class="session" style="animation-delay: 1.1s; animation-name: fadeInUp;">
+                        <div class="topic">المركبات العضوية الحيوية + الإنزيمات و ATP
+
+</div>
+                        <div class="time"><i class="fas fa-clock"></i>7:00 صباحا -11 صباحا </div>
                         <a href="https://youtube.com/live/دورة_الخلية" class="video-link" target="_blank">
                             <i class="fas fa-play"></i> مشاهدة البث
                         </a>
                     </div>
-                    <div class="session">
-                
-                        <div class="topic">المركبات العضوية الحيوية + الإنزيمات و ATP</div>
-                        <div class="time"><i class="fas fa-clock"></i> 7:00 - 11:00</div>
+                    <div class="session" style="animation-delay: 1.2s; animation-name: fadeInUp;">
+                        <div class="topic">دورة الخلية + الانقسامات الخلوية</div>
+                        <div class="time"><i class="fas fa-clock"></i> 1:00 مساء - 3:00 مساء</div>
                         <a href="https://youtube.com/live/المركبات_العضوية" class="video-link" target="_blank">
                             <i class="fas fa-play"></i> مشاهدة البث
                         </a>
                     </div>
-                    <div class="session">
-                        
+                    <div class="session" style="animation-delay: 1.3s; animation-name: fadeInUp;">
                         <div class="topic">وحدة البيئة</div>
-                        <div class="time"><i class="fas fa-clock"></i> 8:00 - 5:00</div>
+                        <div class="time"><i class="fas fa-clock"></i> 5:00 مساءً - 8:00 مساءً</div>
                         <a href="https://youtube.com/live/وحدة_البيئة" class="video-link" target="_blank">
                             <i class="fas fa-play"></i> مشاهدة البث
                         </a>
                     </div>
-                    <div class="session">
-                       
-                        <div class="topic">حل وزارة + فنية + كتاب الأنشطة من اليوتيوب</div>
-                        <div class="time"><i class="fas fa-clock"></i> 10:00 - 8:00</div>
+                    <div class="session" style="animation-delay: 1.4s; animation-name: fadeInUp;">
+                        <div class="topic">حل وزارة + الفية + كتاب الأنشطة من اليوتيوب</div>
+                        <div class="time"><i class="fas fa-clock"></i> 8:00 مساءً</div>
                         <a href="https://youtube.com/live/حل_الوزارة" class="video-link" target="_blank">
                             <i class="fas fa-play"></i> مشاهدة البث
                         </a>
@@ -953,7 +784,7 @@
                     <img src="https://yt3.googleusercontent.com/hs6-dmB5gUUeT1H9MjeNWQwI_gUr6CYbEV6VWXiFHdSuuedhauNTMr9ZMsNlTUfmHtws8iQi=s160-c-k-c0x00ffffff-no-rj" alt="قناة الأستاذ أحمد الجمال">
                     قناة الأستاذ أحمد الجمال
                 </a>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/q3IfIBoraCQ?start=2" allowfullscreen title="أحدث فيديوهات قناة الأستاذ أحمد الجمال"></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/q3IfIBoraCQ?start=2" allowfullscreen="" title="أحدث فيديوهات قناة الأستاذ أحمد الجمال"></iframe>
             </section>
         </div>
         
@@ -961,45 +792,45 @@
             <section class="pdf-section">
                 <h2><i class="fas fa-book-open"></i> ملفات البث</h2>
                 <div class="pdf-grid">
-                    <div class="pdf-card">
+                    <div class="pdf-card" style="animation-delay: 0.2s; animation-name: fadeInUp;">
                         <h3>أنشطة وحدة 1</h3>
-                        <a href="https://drive.google.com/uc?export=download&id=1_ONTRAbxjP-m3XefHs_9Wkj-CohdtNTT" class="pdf-link" target="_blank">
+                        <a href="https://drive.google.com/uc?export=download&amp;id=1_ONTRAbxjP-m3XefHs_9Wkj-CohdtNTT" class="pdf-link" target="_blank">
                             <i class="fas fa-download"></i> تحميل الملف
                         </a>
                     </div>
-                    <div class="pdf-card">
+                    <div class="pdf-card" style="animation-delay: 0.3s; animation-name: fadeInUp;">
                         <h3>الأسئلة الوزارية</h3>
-                        <a href="https://drive.google.com/uc?export=download&id=1_NmU4AqpKAfRh6nb8olq7QjagLgUCLCT" class="pdf-link" target="_blank">
+                        <a href="https://drive.google.com/uc?export=download&amp;id=1_NmU4AqpKAfRh6nb8olq7QjagLgUCLCT" class="pdf-link" target="_blank">
                             <i class="fas fa-download"></i> تحميل الملف
                         </a>
                     </div>
-                    <div class="pdf-card">
+                    <div class="pdf-card" style="animation-delay: 0.4s; animation-name: fadeInUp;">
                         <h3>امتحان علمي ومهني شامل مقترح 2007</h3>
-                        <a href="https://drive.google.com/uc?export=download&id=1_fpOHL_LPL4hzRODZhHC6KVD5wCRYAgX" class="pdf-link" target="_blank">
+                        <a href="https://drive.google.com/uc?export=download&amp;id=1_fpOHL_LPL4hzRODZhHC6KVD5wCRYAgX" class="pdf-link" target="_blank">
                             <i class="fas fa-download"></i> تحميل الملف
                         </a>
                     </div>
-                    <div class="pdf-card">
+                    <div class="pdf-card" style="animation-delay: 0.5s; animation-name: fadeInUp;">
                         <h3>تجارب الفصل الثاني - نهائي</h3>
-                        <a href="https://drive.google.com/uc?export=download&id=1_PS09pa2rO2q6Ay_ou2s0Xgrv5EdNqTc" class="pdf-link" target="_blank">
+                        <a href="https://drive.google.com/uc?export=download&amp;id=1_PS09pa2rO2q6Ay_ou2s0Xgrv5EdNqTc" class="pdf-link" target="_blank">
                             <i class="fas fa-download"></i> تحميل الملف
                         </a>
                     </div>
-                    <div class="pdf-card">
+                    <div class="pdf-card" style="animation-delay: 0.6s; animation-name: fadeInUp;">
                         <h3>حسابات الوحدة الاولى</h3>
-                        <a href="https://drive.google.com/uc?export=download&id=1_WV_VxFE94yE8rFDLCzZ4lvP6YFUpsMU" class="pdf-link" target="_blank">
+                        <a href="https://drive.google.com/uc?export=download&amp;id=1_WV_VxFE94yE8rFDLCzZ4lvP6YFUpsMU" class="pdf-link" target="_blank">
                             <i class="fas fa-download"></i> تحميل الملف
                         </a>
                     </div>
-                    <div class="pdf-card">
+                    <div class="pdf-card" style="animation-delay: 0.7s; animation-name: fadeInUp;">
                         <h3>حسابات الوحدة التانيه</h3>
-                        <a href="https://drive.google.com/uc?export=download&id=1__1bzaNeSz0RsYs2E2XWYGQzktdyjPMt" class="pdf-link" target="_blank">
+                        <a href="https://drive.google.com/uc?export=download&amp;id=1__1bzaNeSz0RsYs2E2XWYGQzktdyjPMt" class="pdf-link" target="_blank">
                             <i class="fas fa-download"></i> تحميل الملف
                         </a>
                     </div>
-                    <div class="pdf-card">
+                    <div class="pdf-card" style="animation-delay: 0.8s; animation-name: fadeInUp;">
                         <h3>مكثف الفصلين نهائي جاهز</h3>
-                        <a href="https://drive.google.com/uc?export=download&id=1_cyMv0doeKIiw_mRAYSqmWHVyFbPa6qY" class="pdf-link" target="_blank">
+                        <a href="https://drive.google.com/uc?export=download&amp;id=1_cyMv0doeKIiw_mRAYSqmWHVyFbPa6qY" class="pdf-link" target="_blank">
                             <i class="fas fa-download"></i> تحميل الملف
                         </a>
                     </div>
@@ -1009,7 +840,7 @@
     </div>
     
     <footer>
-        <p>جميع الحقوق محفوظة &copy; <span id="year"></span> - قناة الأستاذ أحمد الجمال</p>
+        <p>جميع الحقوق محفوظة © <span id="year">2025</span> - قناة الأستاذ أحمد الجمال</p>
         <p>تابعنا على: <a href="https://www.youtube.com/@ahmadaljammal" target="_blank">اليوتيوب</a></p>
         <div class="social-links">
             <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
@@ -1030,22 +861,18 @@
         // تبويبات
         const tabBtns = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
-        
         tabBtns.forEach(btn => {
             btn.addEventListener('click', function() {
                 tabBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                
                 tabContents.forEach(tc => tc.classList.remove('active'));
                 document.getElementById(this.dataset.tab).classList.add('active');
-                
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
 
         // زر الانتقال للأعلى
         const scrollTopBtn = document.getElementById('scrollTop');
-        
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 scrollTopBtn.classList.add('visible');
@@ -1053,7 +880,6 @@
                 scrollTopBtn.classList.remove('visible');
             }
         });
-        
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
@@ -1062,13 +888,11 @@
         document.addEventListener('DOMContentLoaded', () => {
             const sessions = document.querySelectorAll('.session');
             const pdfCards = document.querySelectorAll('.pdf-card');
-            
             setTimeout(() => {
                 sessions.forEach((session, index) => {
                     session.style.animationDelay = `${index * 0.1}s`;
                     session.style.animationName = 'fadeInUp';
                 });
-                
                 pdfCards.forEach((card, index) => {
                     card.style.animationDelay = `${index * 0.1 + 0.2}s`;
                     card.style.animationName = 'fadeInUp';
@@ -1082,12 +906,10 @@
                 const card = this.closest('.session, .pdf-card');
                 const topic = card.querySelector('.topic, h3').textContent;
                 const watched = JSON.parse(localStorage.getItem('watchedSessions') || '[]');
-                
                 if (!watched.includes(topic)) {
                     watched.push(topic);
                     localStorage.setItem('watchedSessions', JSON.stringify(watched));
                 }
-                
                 if (card.classList.contains('session')) {
                     card.style.borderLeftColor = 'var(--success-color)';
                     const typeBadge = card.querySelector('.session-type');
@@ -1104,10 +926,8 @@
         // تمييز الجلسات المشاهدة
         window.addEventListener('load', () => {
             const watched = JSON.parse(localStorage.getItem('watchedSessions') || '[]');
-            
             document.querySelectorAll('.session, .pdf-card').forEach(item => {
                 const topic = item.querySelector('.topic, h3').textContent;
-                
                 if (watched.includes(topic)) {
                     if (item.classList.contains('session')) {
                         item.style.borderLeftColor = 'var(--success-color)';
@@ -1123,5 +943,5 @@
             });
         });
     </script>
-</body>
-</html>
+
+</body></html>
