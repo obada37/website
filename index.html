@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خطة دراسة الأحياء - الأستاذ أحمد الجمال</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
             --accent-color: #e74c3c;
             --light-color: #f9f9f9;
-            --dark-color: #333;
+            --dark-color: #212121;
             --gray-color: #7f8c8d;
             --white-color: #fff;
-            --border-radius: 10px;
-            --box-shadow: 0 4px 16px rgba(44,62,80,0.08);
+            --border-radius: 12px;
+            --box-shadow: 0 6px 24px rgba(52, 73, 94, 0.10);
             --transition: all 0.3s cubic-bezier(.4,1.8,.5,1);
         }
         * {
@@ -25,71 +25,65 @@
             font-family: 'Tajawal', Arial, sans-serif;
         }
         body {
-            background-color: #f0f2f5;
+            background: radial-gradient(ellipse at top right, #e3ecfa 0%, #f7fafd 80%);
             color: var(--dark-color);
-            line-height: 1.8;
-            background-image: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            min-height: 100vh;
         }
         header {
             text-align: center;
-            margin-bottom: 2rem;
             padding: 2.5rem 1rem 2rem 1rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #1a252f 100%);
+            background: linear-gradient(120deg, var(--primary-color), #1a252f 80%);
             color: var(--white-color);
             box-shadow: var(--box-shadow);
-            position: relative;
             border-bottom: 4px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
         }
         .teacher-image {
             position: absolute;
             left: 2rem;
             top: 50%;
             transform: translateY(-50%);
-            width: 90px;
-            height: 90px;
+            width: 85px;
+            height: 85px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--white-color);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.18);
             transition: var(--transition);
         }
-        .teacher-image:hover {
-            transform: translateY(-50%) scale(1.07);
-        }
+        .teacher-image:hover { transform: translateY(-50%) scale(1.07);}
         header h1 {
-            margin-bottom: 0.5rem;
-            font-size: 2.4rem;
+            margin-bottom: 0.7rem;
+            font-size: 2.3rem;
             font-weight: 700;
-            text-shadow: 1px 1px 8px rgba(0,0,0,0.12);
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.07);
         }
-        header p {
-            font-size: 1.18rem;
-            opacity: 0.94;
-        }
+        header p { font-size: 1.16rem; opacity: 0.95; }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
         }
         .day-schedule {
-            background-color: var(--white-color);
+            background: var(--white-color);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             margin-bottom: 2rem;
-            padding: 1.5rem;
+            padding: 1.6rem 1.3rem 1.1rem 1.3rem;
             border-top: 4px solid var(--secondary-color);
             transition: var(--transition);
         }
         .day-schedule:hover {
             transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 7px 20px rgba(44,62,80,0.13);
+            box-shadow: 0 8px 24px rgba(44,62,80,0.13);
         }
         .day-schedule h2 {
             color: var(--primary-color);
             margin-bottom: 1.2rem;
             padding-bottom: 0.8rem;
             border-bottom: 2px dashed #eee;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -101,12 +95,12 @@
         }
         .sessions-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
             gap: 1.2rem;
         }
         .session {
             background-color: var(--light-color);
-            padding: 1.2rem;
+            padding: 1.2rem 1rem 1.1rem 1rem;
             border-radius: calc(var(--border-radius) - 2px);
             border-left: 4px solid var(--secondary-color);
             position: relative;
@@ -116,30 +110,27 @@
             animation: fadeInUp 0.6s forwards;
         }
         .session:hover {
-            transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 4px 16px rgba(44,62,80,0.09);
+            transform: translateY(-4px) scale(1.012);
+            box-shadow: 0 4px 18px rgba(44,62,80,0.09);
         }
         .session::after {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.09) 0%, rgba(231, 76, 60, 0.04) 100%);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.08) 0%, rgba(231, 76, 60, 0.04) 100%);
             z-index: 0;
         }
         .session .topic {
             font-weight: 700;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.63rem;
             color: var(--primary-color);
-            font-size: 1.08rem;
+            font-size: 1.11rem;
             position: relative;
             z-index: 1;
         }
         .session .time {
             color: var(--gray-color);
-            font-size: 0.92rem;
+            font-size: 0.97rem;
             margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
@@ -149,7 +140,6 @@
         .session .time::before {
             content: "🕒";
             margin-left: 0.3rem;
-            font-size: 1.02em;
         }
         .video-link {
             display: inline-flex;
@@ -171,37 +161,12 @@
         .video-link:hover {
             background-color: #2980b9;
             transform: translateY(-2px) scale(1.04);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.13);
         }
         .video-link::before {
             content: "▶";
             margin-left: 0.3rem;
             font-size: 0.9rem;
-        }
-        .pdf-link {
-            display: inline-flex;
-            align-items: center;
-            background-color: #27ae60;
-            color: var(--white-color);
-            padding: 0.5rem 1.1rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.96rem;
-            transition: var(--transition);
-            margin-top: 0.5rem;
-            position: relative;
-            z-index: 1;
-            font-weight: bold;
-        }
-        .pdf-link:hover {
-            background-color: #219653;
-            transform: translateY(-2px) scale(1.04);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.14);
-        }
-        .pdf-link::before {
-            content: "📄";
-            margin-left: 0.3rem;
-            font-size: 0.95rem;
         }
         .session-type {
             position: absolute;
@@ -216,42 +181,28 @@
             z-index: 1;
             letter-spacing: 1px;
         }
-        .pdf-type {
-            background-color: #27ae60;
-        }
         /* تخصيصات للأيام */
         .day-schedule:nth-of-type(1) { border-top-color: #3498db; }
         .day-schedule:nth-of-type(2) { border-top-color: #2ecc71; }
         .day-schedule:nth-of-type(3) { border-top-color: #e74c3c; }
         .day-schedule:nth-of-type(4) { border-top-color: #9b59b6; }
-        /* تأثيرات عند التحويم على الجلسات */
-        .session:hover .topic {
-            color: var(--secondary-color);
-        }
-        /* تنسيقات للروابط */
-        a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        a:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-        /* قسم الملفات */
+        /* روابط عامة */
+        a { color: var(--secondary-color); text-decoration: none; transition: var(--transition);}
+        a:hover { color: var(--primary-color); text-decoration: underline; }
+        /* قسم ملفات البث */
         .pdf-section {
             margin-top: 3rem;
             background-color: var(--white-color);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            padding: 1.5rem;
+            padding: 1.5rem 1.3rem;
             border-top: 4px solid #27ae60;
         }
         .pdf-section h2 {
             color: var(--primary-color);
             margin-bottom: 1.5rem;
             text-align: center;
-            font-size: 1.8rem;
+            font-size: 1.7rem;
         }
         .pdf-section h2::before {
             content: "📚";
@@ -259,12 +210,12 @@
         }
         .pdf-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
             gap: 1.5rem;
         }
         .pdf-card {
             background-color: var(--light-color);
-            padding: 1.2rem;
+            padding: 1.1rem 1rem;
             border-radius: var(--border-radius);
             border-left: 4px solid #27ae60;
             transition: var(--transition);
@@ -273,17 +224,37 @@
         }
         .pdf-card:hover {
             transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 6px 20px rgba(39,174,96,0.12);
+            box-shadow: 0 6px 20px rgba(39,174,96,0.13);
         }
         .pdf-card h3 {
             color: var(--primary-color);
-            margin-bottom: 0.8rem;
-            font-size: 1.18rem;
+            margin-bottom: 0.85rem;
+            font-size: 1.15rem;
         }
-        .pdf-card p {
-            color: var(--gray-color);
-            font-size: 0.93rem;
-            margin-bottom: 1rem;
+        .pdf-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: #27ae60;
+            color: var(--white-color);
+            padding: 0.5rem 1.1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.96rem;
+            transition: var(--transition);
+            margin-top: 0.3rem;
+            position: relative;
+            z-index: 1;
+            font-weight: bold;
+        }
+        .pdf-link:hover {
+            background-color: #219653;
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+        }
+        .pdf-link::before {
+            content: "📄";
+            margin-left: 0.3rem;
+            font-size: 0.95rem;
         }
         /* قسم الصور المفيدة */
         .images-section {
@@ -292,12 +263,12 @@
             background: var(--white-color);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            padding: 1.5rem;
+            padding: 1.5rem 1.1rem;
             border-top: 4px solid #9b59b6;
         }
         .images-section h2 {
             color: var(--primary-color);
-            font-size: 1.7rem;
+            font-size: 1.6rem;
             text-align: center;
             margin-bottom: 1.2rem;
         }
@@ -309,9 +280,9 @@
         }
         .image-card {
             background: #f5f7fa;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(155, 89, 182, 0.09);
-            padding: 0.5rem;
+            border-radius: 9px;
+            box-shadow: 0 2px 10px rgba(155, 89, 182, 0.10);
+            padding: 0.6rem 0.4rem 0.7rem 0.4rem;
             width: 180px;
             transition: var(--transition);
             display: flex;
@@ -321,7 +292,7 @@
         .image-card img {
             max-width: 150px;
             max-height: 110px;
-            border-radius: 7px;
+            border-radius: 8px;
             margin-bottom: 0.5rem;
             box-shadow: 0 0 12px 0 rgba(155, 89, 182, 0.09);
         }
@@ -346,7 +317,7 @@
         .youtube-section h2 {
             color: #c4302b;
             margin-bottom: 0.8rem;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             text-align: center;
         }
         .youtube-section a {
@@ -357,7 +328,7 @@
             background: #f5f7fa;
             border-radius: 5px;
             padding: 0.7rem 1.2rem;
-            font-size: 1.09rem;
+            font-size: 1.04rem;
             font-weight: bold;
             text-decoration: none;
             transition: var(--transition);
@@ -370,10 +341,16 @@
             border-color: #c4302b;
         }
         .youtube-section img {
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             border: 2px solid #c4302b;
+        }
+        .youtube-section iframe {
+            border-radius: 10px;
+            border: none;
+            margin-top: 0.8rem;
+            box-shadow: 0 2px 12px rgba(196,48,43,0.10);
         }
         /* زر الانتقال للأعلى */
         .scroll-top {
@@ -392,48 +369,31 @@
             opacity: 0;
             transition: var(--transition);
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.18);
             border: none;
             font-size: 1.3rem;
         }
-        .scroll-top.visible {
-            opacity: 1;
-        }
+        .scroll-top.visible { opacity: 1;}
         .scroll-top:hover {
             background-color: var(--primary-color);
             transform: translateY(-4px);
         }
         footer {
-            text-align: center;
             margin-top: 3rem;
-            padding: 1.5rem;
+            padding: 1.5rem 1rem;
             background: linear-gradient(135deg, var(--primary-color) 0%, #1a252f 100%);
             color: var(--white-color);
             border-top: 4px solid var(--accent-color);
+            text-align: center;
         }
-        footer p {
-            margin-bottom: 0.5rem;
-        }
-        footer a {
-            color: var(--white-color);
-            text-decoration: none;
-            font-weight: bold;
-            transition: var(--transition);
-        }
-        footer a:hover {
-            color: var(--secondary-color);
-            text-decoration: underline;
-        }
+        footer p { margin-bottom: 0.5rem; }
+        footer a { color: var(--white-color); text-decoration: none; font-weight: bold; transition: var(--transition);}
+        footer a:hover { color: var(--secondary-color); text-decoration: underline;}
+
         /* تأثيرات الظهور */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(25px);}
+            to { opacity: 1; transform: translateY(0);}
         }
         /* استجابة الجوال */
         @media (max-width: 850px) {
@@ -444,8 +404,8 @@
         @media (max-width: 768px) {
             .sessions-container { grid-template-columns: 1fr; }
             header { padding: 1.5rem 1rem; }
-            .teacher-image { position: static; margin: 0 auto 1rem; transform: none; width: 70px; height: 70px; }
-            header h1 { font-size: 1.45rem; }
+            .teacher-image { position: static; margin: 0 auto 1rem; transform: none; width: 65px; height: 65px; }
+            header h1 { font-size: 1.35rem; }
             .scroll-top { width: 2.5rem; height: 2.5rem; bottom: 1rem; left: 1rem; }
             .youtube-section { max-width: 99vw; }
             .images-grid { flex-direction: column; align-items: center; }
@@ -459,12 +419,8 @@
         <h1>خطة دراسة مادة الأحياء</h1>
         <p>إعداد: الأستاذ أحمد الجمال</p>
     </header>
-
     <div class="container">
         <!-- جدول الأيام -->
-        <!-- ... نفس جدول الأيام الموجود لديك ... -->
-
-        <!-- الأحد 6/29 -->
         <section class="day-schedule">
             <h2>الأحد 6/29</h2>
             <div class="sessions-container">
@@ -482,7 +438,6 @@
                 </div>
             </div>
         </section>
-        <!-- الإثنين 6/30 -->
         <section class="day-schedule">
             <h2>الإثنين 6/30</h2>
             <div class="sessions-container">
@@ -506,7 +461,6 @@
                 </div>
             </div>
         </section>
-        <!-- الثلاثاء 7/1 -->
         <section class="day-schedule">
             <h2>الثلاثاء 7/1</h2>
             <div class="sessions-container">
@@ -522,7 +476,6 @@
                 </div>
             </div>
         </section>
-        <!-- الأربعاء 7/2 -->
         <section class="day-schedule">
             <h2>الأربعاء 7/2</h2>
             <div class="sessions-container">
@@ -549,8 +502,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- قسم ملفات البث -->
+        <!-- ملفات البث -->
         <section class="pdf-section">
             <h2>ملفات البث</h2>
             <div class="pdf-grid">
@@ -584,8 +536,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- قسم الصور المفيدة -->
+        <!-- صور مفيدة -->
         <section class="images-section">
             <h2>صور مفيدة</h2>
             <div class="images-grid">
@@ -607,7 +558,6 @@
                 </div>
             </div>
         </section>
-
         <!-- قناة اليوتيوب -->
         <section class="youtube-section">
             <h2>قناة الأستاذ أحمد الجمال على اليوتيوب</h2>
@@ -615,9 +565,7 @@
                 <img src="https://yt3.googleusercontent.com/hs6-dmB5gUUeT1H9MjeNWQwI_gUr6CYbEV6VWXiFHdSuuedhauNTMr9ZMsNlTUfmHtws8iQi=s160-c-k-c0x00ffffff-no-rj" alt="قناة الأستاذ أحمد الجمال">
                 قناة الأستاذ أحمد الجمال
             </a>
-            <div style="margin-top: 1.1rem;">
-                <iframe width="340" height="191" style="max-width:100%;border-radius:10px;border:none;" src="https://www.youtube.com/embed?listType=user_uploads&list=ahmadaljammal" allowfullscreen title="أحدث فيديوهات قناة الأستاذ أحمد الجمال"></iframe>
-            </div>
+            <iframe width="340" height="191" style="max-width:100%;" src="https://www.youtube.com/embed?listType=user_uploads&list=ahmadaljammal" allowfullscreen title="أحدث فيديوهات قناة الأستاذ أحمد الجمال"></iframe>
         </section>
     </div>
     <footer>
