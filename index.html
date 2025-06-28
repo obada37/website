@@ -5,830 +5,695 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خطة دراسة الأحياء - الأستاذ أحمد الجمال</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
         :root {
-            --primary-color: #1a1a2e;
-            --secondary-color: #16213e;
-            --accent-color: #e94560;
-            --light-color: #f8f9fa;
-            --white-color: #ffffff;
-            --text-color: #2c3e50;
-            --gray-color: #6c757d;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-            --info-color: #17a2b8;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.2);
-            --border-radius: 20px;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #f9f9f9;
+            --dark-color: #333;
+            --gray-color: #7f8c8d;
+            --white-color: #fff;
+            --border-radius: 10px;
+            --box-shadow: 0 4px 16px rgba(44,62,80,0.08);
+            --transition: all 0.3s cubic-bezier(.4,1.8,.5,1);
         }
-        
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-        
-        body {
             font-family: 'Tajawal', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-attachment: fixed;
-            color: var(--text-color);
-            line-height: 1.8;
-            overflow-x: hidden;
         }
-        
-        /* شريط التحميل المتحرك */
-        .loading-bar {
-            position: fixed;
+        body {
+            background-color: #f0f2f5;
+            color: var(--dark-color);
+            line-height: 1.8;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2.5rem 1rem 2rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a252f 100%);
+            color: var(--white-color);
+            box-shadow: var(--box-shadow);
+            position: relative;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        .teacher-image {
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--white-color);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+        .teacher-image:hover {
+            transform: translateY(-50%) scale(1.07);
+        }
+        header h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2.4rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.12);
+        }
+        header p {
+            font-size: 1.18rem;
+            opacity: 0.94;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .day-schedule {
+            background-color: var(--white-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-top: 4px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+        .day-schedule:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 7px 20px rgba(44,62,80,0.13);
+        }
+        .day-schedule h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px dashed #eee;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .day-schedule h2::before {
+            content: "📅";
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+        }
+        .sessions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.2rem;
+        }
+        .session {
+            background-color: var(--light-color);
+            padding: 1.2rem;
+            border-radius: calc(var(--border-radius) - 2px);
+            border-left: 4px solid var(--secondary-color);
+            position: relative;
+            transition: var(--transition);
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.6s forwards;
+        }
+        .session:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 4px 16px rgba(44,62,80,0.09);
+        }
+        .session::after {
+            content: "";
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: var(--gradient-2);
-            z-index: 9999;
-            animation: loading 2s ease-in-out infinite;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.09) 0%, rgba(231, 76, 60, 0.04) 100%);
+            z-index: 0;
         }
-        
-        @keyframes loading {
-            0%, 100% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
-        }
-        
-        /* الهيدر المحسن */
-        header {
-            position: relative;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--white-color);
-            padding: 3rem 2rem;
-            text-align: center;
-            overflow: hidden;
-            border-bottom: 5px solid var(--accent-color);
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: float 20s linear infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(-50px, -50px) rotate(360deg); }
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .teacher-profile {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .teacher-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 5px solid var(--accent-color);
-            box-shadow: var(--shadow-heavy);
-            transition: var(--transition);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(233, 69, 96, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(233, 69, 96, 0.8); }
-        }
-        
-        .teacher-image:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-        
-        .teacher-info h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: none;
-        }
-        
-        .teacher-info p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        
-        /* قسم قناة اليوتيوب */
-        .youtube-section {
-            background: var(--gradient-2);
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: var(--border-radius);
-            text-align: center;
-            box-shadow: var(--shadow-medium);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .youtube-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
-            animation: sparkle 15s linear infinite;
-        }
-        
-        @keyframes sparkle {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-50px, -50px); }
-        }
-        
-        .youtube-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .youtube-title {
-            font-size: 2rem;
-            color: var(--white-color);
-            margin-bottom: 1rem;
+        .session .topic {
             font-weight: 700;
-        }
-        
-        .youtube-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            color: var(--white-color);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: var(--transition);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .youtube-link:hover {
-            transform: translateY(-5px) scale(1.05);
-            background: rgba(255, 255, 255, 0.3);
-            box-shadow: var(--shadow-heavy);
-        }
-        
-        .youtube-icon {
-            font-size: 2rem;
-            color: #ff0000;
-            filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        /* تصميم أقسام محسن */
-        .section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow-medium);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--gradient-3);
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 2rem;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--gradient-2);
-            border-radius: 2px;
-        }
-        
-        /* تصميم الجدول الزمني */
-        .day-schedule {
-            background: var(--white-color);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow-light);
-            border-left: 6px solid var(--accent-color);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .day-schedule::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(233, 69, 96, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-        
-        .day-schedule:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-heavy);
-            border-left-width: 10px;
-        }
-        
-        .day-title {
-            font-size: 2rem;
-            font-weight: 700;
+            margin-bottom: 0.6rem;
             color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .day-icon {
-            font-size: 2.5rem;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .sessions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .session-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 15px;
-            padding: 1.5rem;
-            border: 2px solid transparent;
-            background-clip: padding-box;
+            font-size: 1.08rem;
             position: relative;
-            transition: var(--transition);
-            overflow: hidden;
+            z-index: 1;
         }
-        
-        .session-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-3);
-            border-radius: 15px;
-            padding: 2px;
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
-            -webkit-mask-composite: xor;
-        }
-        
-        .session-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-medium);
-        }
-        
-        .session-type {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--gradient-2);
-            color: var(--white-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .session-topic {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-        
-        .session-time {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .session .time {
             color: var(--gray-color);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
+            font-size: 0.92rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
         }
-        
-        .time-icon {
-            font-size: 1.2rem;
-            color: var(--info-color);
+        .session .time::before {
+            content: "🕒";
+            margin-left: 0.3rem;
+            font-size: 1.02em;
         }
-        
-        .session-link {
+        .video-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.8rem;
-            background: var(--gradient-3);
+            background-color: var(--secondary-color);
             color: var(--white-color);
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
+            padding: 0.5rem 1.1rem;
+            border-radius: 4px;
             text-decoration: none;
-            font-weight: 600;
+            font-size: 0.96rem;
             transition: var(--transition);
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
             border: none;
             cursor: pointer;
+            font-weight: bold;
         }
-        
-        .session-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
+        .video-link:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
         }
-        
-        .link-icon {
-            font-size: 1.1rem;
+        .video-link::before {
+            content: "▶";
+            margin-left: 0.3rem;
+            font-size: 0.9rem;
         }
-        
-        /* قسم ملفات البث */
-        .files-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        
-        .file-card {
-            background: var(--white-color);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border-top: 4px solid var(--success-color);
-        }
-        
-        .file-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent 30%, rgba(40, 167, 69, 0.1) 50%, transparent 70%);
-            transform: rotate(45deg);
-            transition: var(--transition);
-            opacity: 0;
-        }
-        
-        .file-card:hover::before {
-            animation: shimmer 1.5s ease-in-out;
-            opacity: 1;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        .file-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: var(--shadow-heavy);
-        }
-        
-        .file-icon {
-            font-size: 3rem;
-            color: var(--success-color);
-            margin-bottom: 1rem;
-            display: block;
-        }
-        
-        .file-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .file-link {
+        .pdf-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.8rem;
-            background: var(--gradient-4);
+            background-color: #27ae60;
             color: var(--white-color);
-            padding: 1rem 2rem;
-            border-radius: 25px;
+            padding: 0.5rem 1.1rem;
+            border-radius: 4px;
             text-decoration: none;
-            font-weight: 600;
+            font-size: 0.96rem;
             transition: var(--transition);
-            width: 100%;
-            justify-content: center;
-        }
-        
-        .file-link:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(67, 233, 123, 0.3);
-        }
-        
-        /* قسم الصور المفيدة */
-        .images-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .image-card {
-            background: var(--white-color);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
+            margin-top: 0.5rem;
             position: relative;
+            z-index: 1;
+            font-weight: bold;
         }
-        
-        .image-card:hover {
-            transform: scale(1.05) rotate(1deg);
-            box-shadow: var(--shadow-heavy);
+        .pdf-link:hover {
+            background-color: #219653;
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.14);
         }
-        
-        .image-placeholder {
-            width: 100%;
-            height: 250px;
-            background: var(--gradient-1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white-color);
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .image-placeholder::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255,255,255,0.1) 10px,
-                rgba(255,255,255,0.1) 20px
-            );
-            animation: slide 3s linear infinite;
-        }
-        
-        @keyframes slide {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .image-info {
-            padding: 1.5rem;
-        }
-        
-        .image-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .image-description {
-            color: var(--gray-color);
+        .pdf-link::before {
+            content: "📄";
+            margin-left: 0.3rem;
             font-size: 0.95rem;
         }
-        
-        /* الفوتر المحسن */
-        footer {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--white-color);
-            padding: 3rem 2rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        footer::before {
-            content: '';
+        .session-type {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--gradient-2);
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .footer-link {
+            top: 0.8rem;
+            left: 0.8rem;
+            background-color: var(--accent-color);
             color: var(--white-color);
+            padding: 0.2rem 0.7rem;
+            border-radius: 3px;
+            font-size: 0.72rem;
+            font-weight: bold;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+        .pdf-type {
+            background-color: #27ae60;
+        }
+        /* تخصيصات للأيام */
+        .day-schedule:nth-of-type(1) { border-top-color: #3498db; }
+        .day-schedule:nth-of-type(2) { border-top-color: #2ecc71; }
+        .day-schedule:nth-of-type(3) { border-top-color: #e74c3c; }
+        .day-schedule:nth-of-type(4) { border-top-color: #9b59b6; }
+        /* تأثيرات عند التحويم على الجلسات */
+        .session:hover .topic {
+            color: var(--secondary-color);
+        }
+        /* تنسيقات للروابط */
+        a {
+            color: var(--secondary-color);
             text-decoration: none;
-            font-weight: 600;
             transition: var(--transition);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
         }
-        
-        .footer-link:hover {
-            background: var(--accent-color);
-            transform: translateY(-3px);
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
         }
-        
-        /* زر العودة للأعلى */
+        /* قسم الملفات */
+        .pdf-section {
+            margin-top: 3rem;
+            background-color: var(--white-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            border-top: 4px solid #27ae60;
+        }
+        .pdf-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        .pdf-section h2::before {
+            content: "📚";
+            margin-left: 0.5rem;
+        }
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .pdf-card {
+            background-color: var(--light-color);
+            padding: 1.2rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid #27ae60;
+            transition: var(--transition);
+            opacity: 0;
+            animation: fadeInUp 0.6s forwards;
+        }
+        .pdf-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 6px 20px rgba(39,174,96,0.12);
+        }
+        .pdf-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.18rem;
+        }
+        .pdf-card p {
+            color: var(--gray-color);
+            font-size: 0.93rem;
+            margin-bottom: 1rem;
+        }
+        /* قسم الصور المفيدة */
+        .images-section {
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
+            background: var(--white-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            border-top: 4px solid #9b59b6;
+        }
+        .images-section h2 {
+            color: var(--primary-color);
+            font-size: 1.7rem;
+            text-align: center;
+            margin-bottom: 1.2rem;
+        }
+        .images-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        .image-card {
+            background: #f5f7fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(155, 89, 182, 0.09);
+            padding: 0.5rem;
+            width: 180px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .image-card img {
+            max-width: 150px;
+            max-height: 110px;
+            border-radius: 7px;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 0 12px 0 rgba(155, 89, 182, 0.09);
+        }
+        .image-card span {
+            font-size: 0.98rem;
+            color: var(--dark-color);
+            text-align: center;
+        }
+        /* قناة اليوتيوب */
+        .youtube-section {
+            margin: 2.5rem auto 2rem auto;
+            padding: 1.5rem 1rem;
+            background: #fff;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-top: 4px solid #e74c3c;
+            max-width: 600px;
+        }
+        .youtube-section h2 {
+            color: #c4302b;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+        .youtube-section a {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #c4302b;
+            background: #f5f7fa;
+            border-radius: 5px;
+            padding: 0.7rem 1.2rem;
+            font-size: 1.09rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-bottom: 0.7rem;
+            border: 1px solid #eee;
+        }
+        .youtube-section a:hover {
+            background: #ffe9e9;
+            color: #b22c29;
+            border-color: #c4302b;
+        }
+        .youtube-section img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid #c4302b;
+        }
+        /* زر الانتقال للأعلى */
         .scroll-top {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-2);
+            background-color: var(--secondary-color);
             color: var(--white-color);
-            border: none;
+            width: 3rem;
+            height: 3rem;
             border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            font-size: 1.5rem;
-            transition: var(--transition);
             opacity: 0;
-            visibility: hidden;
-            z-index: 1000;
-            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            border: none;
+            font-size: 1.3rem;
         }
-        
         .scroll-top.visible {
             opacity: 1;
-            visibility: visible;
         }
-        
         .scroll-top:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: var(--shadow-heavy);
+            background-color: var(--primary-color);
+            transform: translateY(-4px);
         }
-        
-        /* تأثيرات الحركة */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 0.8s ease-out forwards;
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a252f 100%);
+            color: var(--white-color);
+            border-top: 4px solid var(--accent-color);
         }
-        
-        @keyframes fadeIn {
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        footer a {
+            color: var(--white-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        footer a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+        /* تأثيرات الظهور */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
-        /* الاستجابة للشاشات المختلفة */
-        @media (max-width: 768px) {
-            .teacher-profile {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .teacher-info h1 {
-                font-size: 2rem;
-            }
-            
-            .sessions-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .files-grid,
-            .images-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .youtube-link {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
+        /* استجابة الجوال */
+        @media (max-width: 850px) {
+            .container { padding: 0 0.2rem; }
+            .images-grid { gap: 0.7rem; }
+            .image-card { width: 44vw; max-width: 190px; }
         }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .section {
-                padding: 1.5rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
+        @media (max-width: 768px) {
+            .sessions-container { grid-template-columns: 1fr; }
+            header { padding: 1.5rem 1rem; }
+            .teacher-image { position: static; margin: 0 auto 1rem; transform: none; width: 70px; height: 70px; }
+            header h1 { font-size: 1.45rem; }
+            .scroll-top { width: 2.5rem; height: 2.5rem; bottom: 1rem; left: 1rem; }
+            .youtube-section { max-width: 99vw; }
+            .images-grid { flex-direction: column; align-items: center; }
+            .image-card { width: 90vw; max-width: 200px; }
         }
     </style>
 </head>
 <body>
-    <div class="loading-bar"></div>
-    
     <header>
-        <div class="header-content">
-            <div class="teacher-profile">
-                <img src="https://yt3.googleusercontent.com/hs6-dmB5gUUeT1H9MjeNWQwI_gUr6CYbEV6VWXiFHdSuuedhauNTMr9ZMsNlTUfmHtws8iQi=s160-c-k-c0x00ffffff-no-rj" alt="الأستاذ أحمد الجمال" class="teacher-image">
-                <div class="teacher-info">
-                    <h1>خطة دراسة مادة الأحياء</h1>
-                    <p>إعداد: الأستاذ أحمد الجمال</p>
-                </div>
-            </div>
-        </div>
+        <img src="https://yt3.googleusercontent.com/hs6-dmB5gUUeT1H9MjeNWQwI_gUr6CYbEV6VWXiFHdSuuedhauNTMr9ZMsNlTUfmHtws8iQi=s160-c-k-c0x00ffffff-no-rj" alt="الأستاذ أحمد الجمال" class="teacher-image">
+        <h1>خطة دراسة مادة الأحياء</h1>
+        <p>إعداد: الأستاذ أحمد الجمال</p>
     </header>
 
     <div class="container">
-        <!-- قسم قناة اليوتيوب -->
-        <div class="youtube-section fade-in">
-            <div class="youtube-content">
-                <h2 class="youtube-title">🎯 تابع قناتنا على اليوتيوب</h2>
-                <a href="https://www.youtube.com/@ahmadaljammal" target="_blank" class="youtube-link">
-                    <span class="youtube-icon">📺</span>
-                    <span>قناة الأستاذ أحمد الجمال</span>
-                </a>
-            </div>
-        </div>
+        <!-- جدول الأيام -->
+        <!-- ... نفس جدول الأيام الموجود لديك ... -->
 
-        <!-- الجدول الزمني للدروس -->
-        <section class="section fade-in">
-            <h2 class="section-title">📅 الجدول الزمني للدروس</h2>
-            
-            <!-- الأحد 6/29 -->
-            <div class="day-schedule">
-                <h3 class="day-title">
-                    <span class="day-icon">🌅</span>
-                    الأحد 6/29
-                </h3>
-                <div class="sessions-grid">
-                    <div class="session-card">
-                        <span class="session-type">مراجعة</span>
-                        <div class="session-topic">أثر البيئة + الوراثة فوق جينية + مقدمة الطفرات</div>
-                        <div class="session-time">
-                            <span class="time-icon">🕒</span>
-                            7:00 - 5:00
-                        </div>
-                        <a href="https://youtube.com/live/أثر_البيئة_والوراثة" class="session-link" target="_blank">
-                            <span class="link-icon">▶</span>
-                            مشاهدة البث
-                        </a>
-                    </div>
-                    <div class="session-card">
-                        <span class="session-type">مراجعة</span>
-                        <div class="session-topic">الطفرات + التكنولوجيا</div>
-                        <div class="session-time">
-                            <span class="time-icon">🕒</span>
-                            12:00 - 8:00
-                        </div>
-                        <a href="https://youtube.com/live/الطفرات_والتكنولوجيا" class="session-link" target="_blank">
-                            <span class="link-icon">▶</span>
-                            مشاهدة البث
-                        </a>
-                    </div>
+        <!-- الأحد 6/29 -->
+        <section class="day-schedule">
+            <h2>الأحد 6/29</h2>
+            <div class="sessions-container">
+                <div class="session">
+                    <span class="session-type">م</span>
+                    <div class="topic">أثر البيئة + الوراثة فوق جينية + مقدمة الطفرات</div>
+                    <div class="time">7:00 - 5:00</div>
+                    <a href="https://youtube.com/live/أثر_البيئة_والوراثة" class="video-link" target="_blank">مشاهدة البث</a>
+                </div>
+                <div class="session">
+                    <span class="session-type">م</span>
+                    <div class="topic">الطفرات + التكنولوجيا</div>
+                    <div class="time">12:00 - 8:00</div>
+                    <a href="https://youtube.com/live/الطفرات_والتكنولوجيا" class="video-link" target="_blank">مشاهدة البث</a>
                 </div>
             </div>
-
-            <!-- الإثنين 6/30 -->
-            <div class="day-schedule">
-                <h3 class="day-title">
-                    <span class="day-icon">🌟</span>
-                    الإثنين 6/30
-                </h3>
-                <div class="sessions-grid">
-                    <div class="session-card">
-                        <span class="session-type">مراجعة</span>
-                        <div class="session-topic">التنفس الخلوي والتخمّر</div>
-                        <div class="session-time">
-                            <span class="time-icon">🕒</span>
-                            2:00 - 12:00
-                        </div>
-                        <a href="https://youtube.com/live/التنفس_الخلوي" class="session-link" target="_blank">
-                            <span class="link-icon">▶</span>
-                            مشاهدة البث
-                        </a>
-                    </div>
-                    <div class="session-card">
-                        <span class="session-type">مراجعة</span>
-                        <div class="session-topic">البناء الضوئي</div>
-                        <div class="session-time">
-                            <span class="time-icon">🕒</span>
-                            4:00 - 2:00
-                        </div>
-                        <a href="https://youtube.com/live/البناء_الضوئي" class="session-link" target="_blank">
-                            <span class="link-icon">▶</span>
-                            مشاهدة البث
-                        </a>
-                    </div>
-                    <div class="session-card">
-                        <span class="session-type">مراجعة</span>
-                        <div class="session-topic">تضاعف DNA وتصنيع بروتين</div>
-                        <div class="session-time">
-                            <span class="time-icon">🕒</span>
-                            8:00 - 6:00
-                        </div>
-                        <a href="https://youtube.com/live/تضاعف_DNA" class="session-link" target="_blank">
-                            <span class="link-icon">▶</span>
-                            مشاهدة البث
-                        </a>
-                    </div>
+        </section>
+        <!-- الإثنين 6/30 -->
+        <section class="day-schedule">
+            <h2>الإثنين 6/30</h2>
+            <div class="sessions-container">
+                <div class="session">
+                    <span class="session-type">م</span>
+                    <div class="topic">التنفس الخلوي والتخمّر</div>
+                    <div class="time">2:00 - 12:00</div>
+                    <a href="https://youtube.com/live/التنفس_الخلوي" class="video-link" target="_blank">مشاهدة البث</a>
+                </div>
+                <div class="session">
+                    <span class="session-type">م</span>
+                    <div class="topic">البناء الضوئي</div>
+                    <div class="time">4:00 - 2:00</div>
+                    <a href="https://youtube.com/live/البناء_الضوئي" class="video-link" target="_blank">مشاهدة البث</a>
+                </div>
+                <div class="session">
+                    <span class="session-type">م</span>
+                    <div class="topic">تضاعف DNA وتصنيع بروتين</div>
+                    <div class="time">8:00 - 6:00</div>
+                    <a href="https://youtube.com/live/تضاعف_DNA" class="video-link" target="_blank">مشاهدة البث</a>
                 </div>
             </div>
+        </section>
+        <!-- الثلاثاء 7/1 -->
+        <section class="day-schedule">
+            <h2>الثلاثاء 7/1</h2>
+            <div class="sessions-container">
+                <div class="session">
+                    <span class="session-type">حي</span>
+                    <div class="topic">الجينات المرتبطة + خريطة الجينات</div>
+                    <div class="time">10:00 - 5:00</div>
+                    <a href="https://youtube.com/live/الجينات_المرتبطة" class="video-link" target="_blank">مشاهدة البث</a>
+                </div>
+                <div class="session">
+                    <div class="topic">الوراثة المندلية + الوراثة ما بعد مندل</div>
+                    <a href="https://youtube.com/live/الوراثة_المندلية" class="video-link" target="_blank">مشاهدة البث</a>
+                </div>
+            </div>
+        </section>
+        <!-- الأربعاء 7/2 -->
+        <section class="day-schedule">
+            <h2>الأربعاء 7/2</h2>
+            <div class="sessions-container">
+                <div class="session">
+                    <span class="session-type">حي</span>
+                    <div class="topic">دورة الخلية + الانقسامات الخلوية</div>
+                    <div class="time">3:00 - 1:00</div>
+                    <a href="https://youtube.com/live/دورة_الخلية" class="video-link" target="_blank">مشاهدة البث</a>
+                </div>
+                <div class="session">
+                    <span class="session-type">م</span>
+                    <div class="topic">المركبات العضوية الحيوية + الإنزيمات و ATP</div>
+                    <div class="time">7:00 - 11:00</div>
+                    <a href="https://youtube.com/live/المركبات_العضوية" class="video-link" target="_blank">مشاهدة البث</a>
+                </div>
+                <div class="session">
+                    <div class="topic">وحدة البيئة</div>
+                    <div class="time">8:00 - 5:00</div>
+                    <a href="https://youtube.com/live/وحدة_البيئة" class="video-link" target="_blank">مشاهدة البث</a>
+                </div>
+                <div class="session">
+                    <div class="topic">حل وزارة + فنية + كتاب الأنشطة من اليوتيوب</div>
+                    <a href="https://youtube.com/live/حل_الوزارة" class="video-link" target="_blank">مشاهدة البث</a>
+                </div>
+            </div>
+        </section>
 
-            <!-- الثلاثاء 7/1 -->
-            <div class="day-schedule">
-                <h3 class="day-title">
-                    <span class="day-icon">⭐</span>
-                    الثلاثاء 7/1
-                </h3>
-                <div class="sessions-grid">
-                    <div class="session-card">
-                        <span class="session-type">أحياء</span>
-                        <div class="session-topic">الجينات المرتبطة + خريطة الجينات</div>
-                        <div class="session-time">
-                            <span class="time-icon">🕒</span>
-                            10:00 - 5:00
-                        </div>
-                        <a href="https://youtube.com/live/الجينات_المرتبطة" class="session-link" target="_blank">
-                            <span class="link-icon">▶</span>
-                            مشاهدة البث
-                        </a>
-                    </div>
-                    <div class="session-card">
-                        <div class="session-topic">الوراثة المندلية + الوراثة ما بعد مندل</div>
-                        <a href="https://youtube.com/live/الوراثة_المندلية" class="session-link" target="_blank">
-                            <span class="link-icon">▶</span>
-                            مشاهدة البث
-                        </a>
+        <!-- قسم ملفات البث -->
+        <section class="pdf-section">
+            <h2>ملفات البث</h2>
+            <div class="pdf-grid">
+                <div class="pdf-card">
+                    <h3>أنشطة وحدة 1</h3>
+                    <a href="https://drive.google.com/uc?export=download&id=1_ONTRAbxjP-m3XefHs_9Wkj-CohdtNTT" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                <div class="pdf-card">
+                    <h3>الأسئلة الوزارية</h3>
+                    <a href="https://drive.google.com/uc?export=download&id=1_NmU4AqpKAfRh6nb8olq7QjagLgUCLCT" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                <div class="pdf-card">
+                    <h3>امتحان علمي ومهني شامل مقترح 2007</h3>
+                    <a href="https://drive.google.com/uc?export=download&id=1_fpOHL_LPL4hzRODZhHC6KVD5wCRYAgX" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                <div class="pdf-card">
+                    <h3>تجارب الفصل الثاني - نهائي</h3>
+                    <a href="https://drive.google.com/uc?export=download&id=1_PS09pa2rO2q6Ay_ou2s0Xgrv5EdNqTc" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                <div class="pdf-card">
+                    <h3>حسابات الوحدة الاولى</h3>
+                    <a href="https://drive.google.com/uc?export=download&id=1_WV_VxFE94yE8rFDLCzZ4lvP6YFUpsMU" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                <div class="pdf-card">
+                    <h3>حسابات الوحدة التانيه</h3>
+                    <a href="https://drive.google.com/uc?export=download&id=1__1bzaNeSz0RsYs2E2XWYGQzktdyjPMt" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                <div class="pdf-card">
+                    <h3>مكثف الفصلين نهائي جاهز</h3>
+                    <a href="https://drive.google.com/uc?export=download&id=1_cyMv0doeKIiw_mRAYSqmWHVyFbPa6qY" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الصور المفيدة -->
+        <section class="images-section">
+            <h2>صور مفيدة</h2>
+            <div class="images-grid">
+                <div class="image-card">
+                    <img src="https://i.imgur.com/9E3x3Du.png" alt="خريطة الجينات">
+                    <span>خريطة الجينات</span>
+                </div>
+                <div class="image-card">
+                    <img src="https://i.imgur.com/8gptRSC.png" alt="دورة الخلية">
+                    <span>دورة الخلية</span>
+                </div>
+                <div class="image-card">
+                    <img src="https://i.imgur.com/3x1ZB7w.png" alt="ملخص البناء الضوئي">
+                    <span>ملخص البناء الضوئي</span>
+                </div>
+                <div class="image-card">
+                    <img src="https://i.imgur.com/l6pC2gN.png" alt="مخطط الوراثة المندلية">
+                    <span>مخطط الوراثة المندلية</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- قناة اليوتيوب -->
+        <section class="youtube-section">
+            <h2>قناة الأستاذ أحمد الجمال على اليوتيوب</h2>
+            <a href="https://www.youtube.com/@ahmadaljammal" target="_blank">
+                <img src="https://yt3.googleusercontent.com/hs6-dmB5gUUeT1H9MjeNWQwI_gUr6CYbEV6VWXiFHdSuuedhauNTMr9ZMsNlTUfmHtws8iQi=s160-c-k-c0x00ffffff-no-rj" alt="قناة الأستاذ أحمد الجمال">
+                قناة الأستاذ أحمد الجمال
+            </a>
+            <div style="margin-top: 1.1rem;">
+                <iframe width="340" height="191" style="max-width:100%;border-radius:10px;border:none;" src="https://www.youtube.com/embed?listType=user_uploads&list=ahmadaljammal" allowfullscreen title="أحدث فيديوهات قناة الأستاذ أحمد الجمال"></iframe>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; <span id="year"></span> - قناة الأستاذ أحمد الجمال</p>
+        <p>تابعنا على: <a href="https://www.youtube.com/@ahmadaljammal" target="_blank">اليوتيوب</a></p>
+    </footer>
+    <button class="scroll-top" id="scrollTop" aria-label="الانتقال إلى الأعلى">↑</button>
+    <script>
+        // تحديث سنة حقوق النشر
+        document.getElementById('year').textContent = new Date().getFullYear();
+        // زر الانتقال للأعلى
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        // تأثيرات الظهور عند التحميل
+        document.addEventListener('DOMContentLoaded', () => {
+            const sessions = document.querySelectorAll('.session');
+            const pdfCards = document.querySelectorAll('.pdf-card');
+            setTimeout(() => {
+                sessions.forEach((session, index) => {
+                    session.style.animationDelay = `${index * 0.07}s`;
+                    session.style.animationName = 'fadeInUp';
+                });
+                pdfCards.forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.08 + 0.24}s`;
+                    card.style.animationName = 'fadeInUp';
+                });
+            }, 85);
+        });
+        // حفظ الجلسات المكتملة
+        document.querySelectorAll('.video-link, .pdf-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const card = this.closest('.session, .pdf-card');
+                const topic = card.querySelector('.topic, h3').textContent;
+                const watched = JSON.parse(localStorage.getItem('watchedSessions') || '[]');
+                if (!watched.includes(topic)) {
+                    watched.push(topic);
+                    localStorage.setItem('watchedSessions', JSON.stringify(watched));
+                }
+                if (card.classList.contains('session')) {
+                    card.style.borderLeftColor = '#2ecc71';
+                    const typeBadge = card.querySelector('.session-type');
+                    if (typeBadge) {
+                        typeBadge.style.backgroundColor = '#2ecc71';
+                    }
+                } else if (card.classList.contains('pdf-card')) {
+                    card.style.borderLeftColor = '#16a085';
+                }
+            });
+        });
+        // تمييز الجلسات المشاهدة
+        window.addEventListener('load', () => {
+            const watched = JSON.parse(localStorage.getItem('watchedSessions') || '[]');
+            document.querySelectorAll('.session, .pdf-card').forEach(item => {
+                const topic = item.querySelector('.topic, h3').textContent;
+                if (watched.includes(topic)) {
+                    if (item.classList.contains('session')) {
+                        item.style.borderLeftColor = '#2ecc71';
+                        const typeBadge = item.querySelector('.session-type');
+                        if (typeBadge) {
+                            typeBadge.style.backgroundColor = '#2ecc71';
+                        }
+                    } else if (item.classList.contains('pdf-card')) {
+                        item.style.borderLeftColor = '#16a085';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
