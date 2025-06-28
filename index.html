@@ -196,6 +196,33 @@
             font-size: 0.8rem;
         }
         
+        .pdf-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: #27ae60;
+            color: var(--white-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pdf-link:hover {
+            background-color: #219653;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .pdf-link::before {
+            content: "📄";
+            margin-left: 0.3rem;
+            font-size: 0.8rem;
+        }
+        
         .session-type {
             position: absolute;
             top: 0.8rem;
@@ -207,6 +234,10 @@
             font-size: 0.7rem;
             font-weight: bold;
             z-index: 1;
+        }
+        
+        .pdf-type {
+            background-color: #27ae60;
         }
         
         footer {
@@ -339,6 +370,59 @@
             color: var(--primary-color);
             text-decoration: underline;
         }
+
+        /* قسم الملفات */
+        .pdf-section {
+            margin-top: 3rem;
+            background-color: var(--white-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            border-top: 4px solid #27ae60;
+        }
+
+        .pdf-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .pdf-section h2::before {
+            content: "📚";
+            margin-left: 0.5rem;
+        }
+
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pdf-card {
+            background-color: var(--light-color);
+            padding: 1.2rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid #27ae60;
+            transition: var(--transition);
+        }
+
+        .pdf-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .pdf-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .pdf-card p {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -437,6 +521,54 @@
                 </div>
             </div>
         </section>
+
+        <!-- قسم ملفات PDF -->
+        <section class="pdf-section">
+            <h2>الملفات التعليمية PDF</h2>
+            <div class="pdf-grid">
+                <div class="pdf-card">
+                    <h3>ملف شرح الوراثة</h3>
+                    <p>ملف شامل لشرح مفاهيم الوراثة المندلية وما بعد المندلية</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1_ONTRAbxjP-m3XefHs_9Wkj-CohdtNTT" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                
+                <div class="pdf-card">
+                    <h3>ملخص التنفس الخلوي</h3>
+                    <p>شرح مفصل لعمليات التنفس الخلوي والتخمر</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1_NmU4AqpKAfRh6nb8olq7QjagLgUCLCT" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                
+                <div class="pdf-card">
+                    <h3>دليل البناء الضوئي</h3>
+                    <p>شرح شامل لمراحل البناء الضوئي والعوامل المؤثرة</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1_fpOHL_LPL4hzRODZhHC6KVD5wCRYAgX" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                
+                <div class="pdf-card">
+                    <h3>الطفرات الجينية</h3>
+                    <p>شرح أنواع الطفرات وآثارها على الكائنات الحية</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1_PS09pa2rO2q6Ay_ou2s0Xgrv5EdNqTc" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                
+                <div class="pdf-card">
+                    <h3>الانقسام الخلوي</h3>
+                    <p>شرح مراحل الانقسام المتساوي والمنصف</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1_WV_VxFE94yE8rFDLCzZ4lvP6YFUpsMU" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                
+                <div class="pdf-card">
+                    <h3>المركبات العضوية</h3>
+                    <p>ملخص شامل للمركبات العضوية الحيوية</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1__1bzaNeSz0RsYs2E2XWYGQzktdyjPMt" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+                
+                <div class="pdf-card">
+                    <h3>البيئة والتوازن البيئي</h3>
+                    <p>شرح مفاهيم البيئة والسلاسل الغذائية</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1_cyMv0doeKIiw_mRAYSqmWHVyFbPa6qY" class="pdf-link" target="_blank">تحميل الملف</a>
+                </div>
+            </div>
+        </section>
     </div>
 
     <footer>
@@ -471,23 +603,27 @@
         // تأثيرات الظهور عند التحميل
         document.addEventListener('DOMContentLoaded', () => {
             const sessions = document.querySelectorAll('.session');
+            const pdfCards = document.querySelectorAll('.pdf-card');
             
             // تأخير بسيط لضمان تحميل الصفحة بالكامل
             setTimeout(() => {
                 sessions.forEach((session, index) => {
-                    // إزالة التأخير المحدد مسبقاً في CSS
                     session.style.animationDelay = `${index * 0.1}s`;
-                    // إضافة كلاس لبدء التحريك
                     session.style.animationName = 'fadeInUp';
+                });
+                
+                pdfCards.forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.1 + 0.3}s`;
+                    card.style.animationName = 'fadeInUp';
                 });
             }, 100);
         });
 
         // حفظ الجلسات المكتملة
-        document.querySelectorAll('.video-link').forEach(link => {
+        document.querySelectorAll('.video-link, .pdf-link').forEach(link => {
             link.addEventListener('click', function() {
-                const session = this.closest('.session');
-                const topic = session.querySelector('.topic').textContent;
+                const card = this.closest('.session, .pdf-card');
+                const topic = card.querySelector('.topic, h3').textContent;
                 
                 // تخزين في localStorage
                 const watched = JSON.parse(localStorage.getItem('watchedSessions') || '[]');
@@ -497,8 +633,15 @@
                 }
                 
                 // إضافة تأثير مرئي
-                session.style.borderLeftColor = '#2ecc71';
-                session.querySelector('.session-type').style.backgroundColor = '#2ecc71';
+                if (card.classList.contains('session')) {
+                    card.style.borderLeftColor = '#2ecc71';
+                    const typeBadge = card.querySelector('.session-type');
+                    if (typeBadge) {
+                        typeBadge.style.backgroundColor = '#2ecc71';
+                    }
+                } else if (card.classList.contains('pdf-card')) {
+                    card.style.borderLeftColor = '#16a085';
+                }
             });
         });
 
@@ -506,13 +649,17 @@
         window.addEventListener('load', () => {
             const watched = JSON.parse(localStorage.getItem('watchedSessions') || '[]');
             
-            document.querySelectorAll('.session').forEach(session => {
-                const topic = session.querySelector('.topic').textContent;
+            document.querySelectorAll('.session, .pdf-card').forEach(item => {
+                const topic = item.querySelector('.topic, h3').textContent;
                 if (watched.includes(topic)) {
-                    session.style.borderLeftColor = '#2ecc71';
-                    const typeBadge = session.querySelector('.session-type');
-                    if (typeBadge) {
-                        typeBadge.style.backgroundColor = '#2ecc71';
+                    if (item.classList.contains('session')) {
+                        item.style.borderLeftColor = '#2ecc71';
+                        const typeBadge = item.querySelector('.session-type');
+                        if (typeBadge) {
+                            typeBadge.style.backgroundColor = '#2ecc71';
+                        }
+                    } else if (item.classList.contains('pdf-card')) {
+                        item.style.borderLeftColor = '#16a085';
                     }
                 }
             });
